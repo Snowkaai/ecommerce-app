@@ -1,6 +1,7 @@
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, inject, Input, signal, Signal } from '@angular/core';
 import { Product } from '../../Models/IProduct';
 import { interval, of, Subject, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productcard',
@@ -12,6 +13,7 @@ export class Productcard {
   @Input() product!: Product;
   currentIndex = signal(0);
   isFading = signal(false); // 👈 tracks whether the image is mid-fade
+  router = inject(Router);
 
   private hoverSubject = new Subject<boolean>();
 
@@ -42,5 +44,9 @@ export class Productcard {
   }
   onMouseLeave() {
     this.hoverSubject.next(false);
+  }
+
+  goToProduct() {
+    this.router.navigate(['/main', 'shop', this.product.id]);
   }
 }

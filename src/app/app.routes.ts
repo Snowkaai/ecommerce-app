@@ -7,6 +7,7 @@ import { Signup } from './components/signup/signup';
 import { AuthLayout } from './layouts/auth-layout/auth-layout';
 import { ShopLayout } from './layouts/shop-layout/shop-layout';
 import { Carousel } from './components/carousel/carousel';
+import { ProductLayout } from './layouts/product-layout/product-layout';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
       {
         path: 'shop',
         component: ShopLayout,
+      },
+      {
+        path: 'shop/:id',
+        component: ProductLayout,
       },
     ],
   },

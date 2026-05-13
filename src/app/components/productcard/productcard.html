@@ -3,6 +3,7 @@
   style="width: 18rem"
   (mouseenter)="onMouseEnter()"
   (mouseleave)="onMouseLeave()"
+  (click)="goToProduct()"
 >
   <img
     [src]="this.product.images[currentIndex()]"
