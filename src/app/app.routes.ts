@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
-import { Notfound } from './components/notfound/notfound';
 import { Header } from './components/header/header';
-import { Home } from './components/home/home';
+import { HomeLayout } from './layouts/home-layout/home-layout';
+import { NotFoundLayout } from './layouts/not-found-layout/not-found-layout';
+import { Login } from './components/login/login';
+import { Signup } from './components/signup/signup';
+import { AuthLayout } from './layouts/auth-layout/auth-layout';
+import { ShopLayout } from './layouts/shop-layout/shop-layout';
+import { Carousel } from './components/carousel/carousel';
 
 export const routes: Routes = [
   {
@@ -11,25 +16,44 @@ export const routes: Routes = [
   },
   {
     path: 'main',
-    component: Header,
+    component: HomeLayout,
     children: [
       {
         path: '', //Empty path will redirect to home
-        redirectTo: 'Home',
+        redirectTo: 'home',
         pathMatch: 'full',
       },
       {
-        path: 'Home',
-        component: Home,
+        path: 'home',
+        component: Carousel,
       },
       {
-        path: '**',
-        component: Notfound,
+        path: 'shop',
+        component: ShopLayout,
+      },
+    ],
+  },
+  {
+    path: 'auth',
+    component: AuthLayout,
+    children: [
+      {
+        path: '', //Empty path will redirect to home
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: Login,
+      },
+      {
+        path: 'signup',
+        component: Signup,
       },
     ],
   },
   {
     path: '**',
-    component: Notfound,
+    component: NotFoundLayout,
   },
 ];
