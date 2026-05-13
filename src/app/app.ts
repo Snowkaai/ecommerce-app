@@ -15,6 +15,8 @@ export class App {
 
   ngOnInit(){
     this.productService.GetAllProducts();
+    this.productService.GetProductById(1);
+    this.productService.GetProductById(2);
   }
   
 }

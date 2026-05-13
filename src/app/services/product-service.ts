@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 export class ProductService {
   http= inject(HttpClient);
   products= signal<Product[]>([]);
+  product! : Product;
 
 //   GetAllProducts(){
 //   return this.http.get<any[]>(baseURL+'/products').subscribe({
@@ -35,14 +36,34 @@ export class ProductService {
       id: prod.id,
       title: prod.title,
       price: prod.price,
-      category: prod.category
+      category: prod.category,
+      images:prod.images
     })))
   ).subscribe({
     next: (data) => {        
       this.products.set(data); 
-      console.log('Products received:', data);
+      console.log(this.products());
     },
     error: (err) => console.error(err)
-  });;
+  });
+}
+
+
+GetProductById(id:number){
+ return this.http.get<any>(baseURL + `/products/${id}`).pipe(
+    map((data) => ({
+      id: data.id,
+      title: data.title,
+      price: data.price,
+      category: data.category,
+      images:data.images
+    })))
+    .subscribe({
+    next: (data) => {  
+      this.product=data;      
+      console.log(data);
+    },
+    error: (err) => console.error(err)
+  });
 }
 }
