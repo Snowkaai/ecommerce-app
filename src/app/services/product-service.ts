@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Product } from '../Models/IProduct';
+import { Product, Review } from '../Models/IProduct';
 import { baseURL } from '../Models/api';
 import { map } from 'rxjs';
 
@@ -37,7 +37,14 @@ export class ProductService {
       title: prod.title,
       price: prod.price,
       category: prod.category,
-      images:prod.images
+      images:prod.images,
+      reviews:prod.reviews.map(
+        (r:Review)=>({
+          rating:r.rating,
+          comment:r.comment,
+          date:r.date
+        })
+      )
     })))
   ).subscribe({
     next: (data) => {        
@@ -56,12 +63,19 @@ GetProductById(id:number){
       title: data.title,
       price: data.price,
       category: data.category,
-      images:data.images
+      images:data.images,
+      reviews:data.reviews.map(
+        (r:Review)=>({
+          rating:r.rating,
+          comment:r.comment,
+          date:r.date
+        })
+      )
     })))
     .subscribe({
     next: (data) => {  
       this.product=data;      
-      console.log(data);
+      console.log(this.product);
     },
     error: (err) => console.error(err)
   });
