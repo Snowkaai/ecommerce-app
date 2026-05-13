@@ -13,5 +13,8 @@ export class App {
 
   productService=inject(ProductService);
 
+  ngOnInit(){
+    this.productService.GetAllProducts();
+  }
   
 }
