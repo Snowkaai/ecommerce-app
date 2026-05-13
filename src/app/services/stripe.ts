@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { loadStripe } from '@stripe/stripe-js';
+//import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../environments/environment';
 
 @Injectable({
