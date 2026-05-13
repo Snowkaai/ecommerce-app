@@ -8,7 +8,9 @@
   "projects": {
     "ecommerce-app": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {"@schematics/angular:component": {"path": "/src/app/components" , "skipTests": true},
+    "@schematics/angular:service": {"path": "/src/app/services"},
+  "@schematics/angular:guard": {"path": "./src/app/guards"}},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
