@@ -2,12 +2,12 @@ import { Routes } from '@angular/router';
 import { Header } from './components/header/header';
 import { HomeLayout } from './layouts/home-layout/home-layout';
 import { NotFoundLayout } from './layouts/not-found-layout/not-found-layout';
-import { Login } from './components/login/login';
 import { Signup } from './components/signup/signup';
 import { AuthLayout } from './layouts/auth-layout/auth-layout';
 import { ShopLayout } from './layouts/shop-layout/shop-layout';
 import { Carousel } from './components/carousel/carousel';
 import { ProductLayout } from './layouts/product-layout/product-layout';
+import { Login } from './components/login/login';
 
 export const routes: Routes = [
   {
