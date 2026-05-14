@@ -1,0 +1,29 @@
+.footer {
+  min-height: 280px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #adb5bd;
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+input.form-control {
+  background-color: #f8f9fa;
+}
+
+button.btn {
+  width: fit-content;
+}

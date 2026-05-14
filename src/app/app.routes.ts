@@ -8,6 +8,10 @@ import { ShopLayout } from './layouts/shop-layout/shop-layout';
 import { Carousel } from './components/carousel/carousel';
 import { ProductLayout } from './layouts/product-layout/product-layout';
 import { Login } from './components/login/login';
+import { TermsOfUse } from './components/terms-of-use/terms-of-use';
+import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
+import { ContactUs } from './components/contact-us/contact-us';
+import { Support } from './components/support/support';
 
 export const routes: Routes = [
   {
@@ -56,6 +60,22 @@ export const routes: Routes = [
         component: Signup,
       },
     ],
+  },
+  {
+    path: 'termsofuse',
+    component: TermsOfUse,
+  },
+  {
+    path: 'privacypolicy',
+    component: PrivacyPolicy,
+  },
+  {
+    path: 'contactus',
+    component: ContactUs,
+  },
+  {
+    path: 'support',
+    component: Support,
   },
   {
     path: '**',
