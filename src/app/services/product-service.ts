@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Product, Review } from '../Models/IProduct';
 import { baseURL } from '../Models/api';
 import { map } from 'rxjs';
@@ -10,8 +10,8 @@ import { map } from 'rxjs';
 export class ProductService {
   http= inject(HttpClient);
   products= signal<Product[]>([]);
-  product! : Product;
-
+  //product! : Product;
+  
 //   GetAllProducts(){
 //   return this.http.get<any[]>(baseURL+'/products').subscribe({
 //     next:(data)=>{
@@ -35,6 +35,7 @@ export class ProductService {
     map((data) => data.map((prod) => ({
       id: prod.id,
       title: prod.title,
+      description:prod.description,
       price: prod.price,
       category: prod.category,
       images:prod.images,
@@ -46,13 +47,7 @@ export class ProductService {
         })
       )
     })))
-  ).subscribe({
-    next: (data) => {        
-      this.products.set(data); 
-      console.log(this.products());
-    },
-    error: (err) => console.error(err)
-  });
+  )
 }
 
 
@@ -61,6 +56,7 @@ GetProductById(id:number){
     map((data) => ({
       id: data.id,
       title: data.title,
+      description:data.description,
       price: data.price,
       category: data.category,
       images:data.images,
@@ -72,12 +68,27 @@ GetProductById(id:number){
         })
       )
     })))
-    .subscribe({
-    next: (data) => {  
-      this.product=data;      
-      console.log(this.product);
-    },
-    error: (err) => console.error(err)
-  });
 }
+
+GetProductByCategory(category:string){
+   return this.http.get<any[]>(baseURL + `/products?category=${category}`).pipe(
+    map((data) => data.map((prod) => ({
+      id: prod.id,
+      title: prod.title,
+      description:prod.description,
+      price: prod.price,
+      category: prod.category,
+      images:prod.images,
+      reviews:prod.reviews?.map(
+        (r:Review)=>({
+          rating:r.rating,
+          comment:r.comment,
+          date:r.date
+        })
+      )
+    })))
+  )
+}
+
+
 }

@@ -14,9 +14,16 @@ export class App {
   productService=inject(ProductService);
 
   ngOnInit(){
-    this.productService.GetAllProducts();
-    this.productService.GetProductById(1);
-    this.productService.GetProductById(2);
+  //   this.productService.GetAllProducts();
+  //   this.productService.GetProductById(1);
+  //   this.productService.GetProductById(2);
+  //   this.productService.GetProductByCategory("beauty")
+  // .subscribe({
+  //   next: (data) => {this.productService.products.set(data);
+  //     console.log(this.productService.products());
+  //   },
+  //   error: (err) => console.error(err)
+  // });
   }
   
 }
