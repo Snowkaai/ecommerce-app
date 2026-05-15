@@ -36,6 +36,50 @@ app.post('/create-checkout-session', async (req, res) => {
   res.json({ url: session.url });
 });
 
+// gemini chatbot
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { message, products } = req.body;
+
+    const productsInfo = JSON.stringify(products, null, 2);
+    
+    const prompt = `You are a helpful product recommendation chatbot. You have these products:
+
+    ${productsInfo}
+
+    User: ${message}
+    When recommending a product, ALWAYS include a link in this format:
+    http://localhost:4200/main/shop/[PRODUCT_ID]
+    Recommend a product if relevant. Keep response brief and natural.`;
+
+    const response = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + GEMINI_API_KEY,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }]
+            }
+          ]
+        })
+      }
+    );
+
+    const data = await response.json();
+    console.log('Gemini Response:', JSON.stringify(data, null, 2));
+    const botReply = data.candidates[0].content.parts[0].text;
+
+    res.json({ reply: botReply });
+  } catch (error) {
+    console.error('Gemini API Error:', error);
+    res.status(500).json({ error: 'Failed to get response' });
+  }
+});
+
 
 
 app.listen(4242, () => {
