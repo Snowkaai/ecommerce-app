@@ -10,24 +10,18 @@ import { map } from 'rxjs';
 export class ProductService {
   http= inject(HttpClient);
   products= signal<Product[]>([]);
-  //product! : Product;
-  
-//   GetAllProducts(){
-//   return this.http.get<any[]>(baseURL+'/products').subscribe({
-//     next:(data)=>{
-//      const mappedData:Product[] = data.map((prod)=>({
-//       id:prod.id,
-//       title:prod.title,
-//       price:prod.price,
-//       category:prod.category
-//      }));
+  search = signal('');
 
-//      this.products.set(mappedData);
-//      console.log(this.products());
-//         },
-//     error:(e)=>{ console.error(e); }
-//   });
-// }
+
+   filteredProducts = computed(() => {
+    const query = this.search().toLowerCase();
+    if (!query) return this.products();
+    return this.products().filter((prod) =>
+      prod.title.toLowerCase().includes(query) ||
+      prod.category.toLowerCase().includes(query) ||
+      prod.price.toString().includes(query)
+    );
+  });
 
 
  GetAllProducts() {
@@ -70,7 +64,7 @@ GetProductById(id:number){
     })))
 }
 
-GetProductByCategory(category:string){
+GetProductByCategory(category:string|null){
    return this.http.get<any[]>(baseURL + `/products?category=${category}`).pipe(
     map((data) => data.map((prod) => ({
       id: prod.id,
@@ -89,6 +83,8 @@ GetProductByCategory(category:string){
     })))
   )
 }
+
+
 
 
 }

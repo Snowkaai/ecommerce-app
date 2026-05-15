@@ -7,7 +7,7 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-product-layout',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './product-layout.html',
   styleUrl: './product-layout.css',
 })
