@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root',
 })
 export class CartService {
-
   http = inject(HttpClient);
   baseUrl = 'http://localhost:3000/users';
 
@@ -71,7 +70,6 @@ export class CartService {
         return item;
       });
       this.cartItems.set(updatedItems);
-
     } else {
       const newCartItem: CartItem = {
         id: uuidv4(),
