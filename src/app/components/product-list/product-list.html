@@ -1,0 +1,10 @@
+<div class="container my-5">
+  <!-- The Row acts as the Flex container -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @if(productService.filteredProducts()){
+      @for(item of productService.filteredProducts();track item.id){
+        <app-productcard [product]="item"></app-productcard>
+      }
+    }
+  </div>
+</div>
