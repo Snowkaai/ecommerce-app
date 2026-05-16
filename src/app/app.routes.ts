@@ -6,13 +6,13 @@ import { Signup } from './components/signup/signup';
 import { AuthLayout } from './layouts/auth-layout/auth-layout';
 import { ShopLayout } from './layouts/shop-layout/shop-layout';
 import { Carousel } from './components/carousel/carousel';
-import { ProductLayout } from './layouts/product-layout/product-layout';
+import { ProductLayout } from './pages/product-layout/product-layout';
 import { Login } from './components/login/login';
 import { TermsOfUse } from './components/terms-of-use/terms-of-use';
 import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
 import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
-import { LandingPageLayout } from './layouts/landing-page-layout/landing-page-layout';
+import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
 
 export const routes: Routes = [
   {

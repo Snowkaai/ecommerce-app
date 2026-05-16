@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Header } from '../../components/header/header';
-import { Notfound } from '../../components/notfound/notfound';
+import { Notfound } from '../../pages/notfound/notfound';
 
 @Component({
   selector: 'app-not-found-layout',
