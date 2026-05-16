@@ -38,6 +38,9 @@ export class Login {
 
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', 'fake-token');
+      
+      this.authService.setUser(user);
+      
 
       this.router.navigate(['/']);
     });
@@ -48,24 +51,22 @@ export class Login {
     //     }
   }
 
-  login() {
-    this.authGoogle
-      .loginWithGoogle()
-      .then(async (res) => {
-        const user = res.user;
+   async login() {
 
-        const token = await user.getIdToken();
+  try {
 
-        console.log('User:', user);
-        console.log('Token:', token);
+    await this.authGoogle.loginAndSaveUser(this.authService);
 
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('token', token);
+    this.router.navigate(['/']);
 
-        this.router.navigate(['/']);
-      })
-      .catch((err) => console.log(err));
   }
+
+  catch(err) {
+
+    console.log(err);
+
+  }
+}
 
   goToSignup() {
     this.router.navigate(['/auth/signup']);

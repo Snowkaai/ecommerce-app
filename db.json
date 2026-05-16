@@ -101,6 +101,21 @@
       "email": "f@gmail.com",
       "password": "123456",
       "cart": []
+    },
+    {
+      "id": "s7Lr9MjkKnc",
+      "name": "mai",
+      "email": "mai@gmail.com",
+      "password": "123457",
+      "cart": []
+    },
+    {
+      "id": "VzC4yXG5S_k",
+      "name": "Test",
+      "email": "testahmed9266@gmail.com",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJLDZAUJr58jfDV076k0oUVyvtuP5T_gEDuFzCOKfb6BSH_ig=s96-c",
+      "provider": "google",
+      "cart": []
     }
   ],
   "products": [

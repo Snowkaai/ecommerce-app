@@ -26,25 +26,22 @@ export class Signup {
  }
 private authGoogle = inject(AuthGoogle);
 
-  login() {
-  this.authGoogle.loginWithGoogle()
-    .then(async res => {
+async login() {
 
-      const user = res.user;
+  try {
 
-     
-      const token = await user.getIdToken();
+    await this.authGoogle.loginAndSaveUser(this.authService);
+    localStorage.setItem("status",this.authService.isLoggedIn().toString())
 
-      console.log('User:', user);
-      console.log('Token:', token);
+    this.router.navigate(['/']);
 
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", token);
-      // this.notification.show('Login successfully', 'success');
-  this.router.navigate(['/']);
+  }
 
-    })
-    .catch(err => console.log(err));
+  catch(err) {
+
+    console.log(err);
+
+  }
 }
   onSignup() {
     if (this.signupForm.invalid) return;
@@ -64,6 +61,7 @@ const email = data.email ?? '';
       name: data.name,
       email: data.email,
       password: data.password
+      ,cart:[]
     };
 this.authService.getUserByEmail(email).subscribe(res => {
   if (res.length > 0) {
@@ -75,6 +73,7 @@ this.authService.getUserByEmail(email).subscribe(res => {
    this.authService.signup(user).subscribe(() => {
       //alert("User created successfully");
       // this.notification.show('User created successfully', 'success');
+      
       this.router.navigate(['/auth/login']);
     });
   
