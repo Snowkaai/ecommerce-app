@@ -1,30 +1,45 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/main/home">Ecommerce App</a>
+<header class="top-0 z-50 border-b border-surface-border bg-surface/95 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Logo / App Name -->
+    <a routerLink="/main/home" class="text-2xl font-bold font-display text-brand hover:text-brand-dark">
+      ShopVerse
+    </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/main/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/main/shop">Shop</a>
-        </li>
-      </ul>
-      <a routerLink="/main/cart" class="btn btn-outline-secondary position-relative me-3">
-        🛒
+    <!-- Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a routerLink="/main/home" class="font-medium text-text-base hover:text-brand transition-colors">
+        Home
+      </a>
+      <a routerLink="/main/shop" class="font-medium text-text-base hover:text-brand transition-colors">
+        Shop
+      </a>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="flex items-center gap-3">
+
+      <!-- Cart Button -->
+      <a routerLink="/main/cart"
+        class="relative flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface hover:bg-brand-light transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-text-base" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 5h12M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+        </svg>
+
+        <!-- Dynamic Cart Badge -->
         @if (cartService.itemCount() > 0) {
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <span
+          class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand text-[10px] font-semibold text-white">
           {{ cartService.itemCount() }}
         </span>
         }
       </a>
 
+      <!-- Login Button -->
+      <a routerLink="/auth/login" class="btn btn-primary">Login</a>
     </div>
+
   </div>
-</nav>
+</header>

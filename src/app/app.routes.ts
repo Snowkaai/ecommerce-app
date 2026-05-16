@@ -13,6 +13,8 @@ import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
 import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
 import { Cart } from './components/components/cart/cart';
+import { LandingPageLayout } from './layouts/landing-page-layout/landing-page-layout';
+
 
 export const routes: Routes = [
   {
@@ -31,7 +33,7 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: Carousel,
+        component: LandingPageLayout,
       },
       {
         path: 'shop',
