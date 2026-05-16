@@ -1,0 +1,81 @@
+<div class="cart-container">
+
+  <h2 class="cart-title">🛒 Your Cart</h2>
+  @if (cartService.cartItems().length === 0) {
+
+  <div class="empty-cart">
+    <p>Your cart is empty.</p>
+    <button class="btn btn-primary" (click)="backToShop()">
+      Back to Shop
+    </button>
+  </div>
+
+
+  }
+
+  @else {
+
+  <div class="cart-content">
+    <div class="cart-items">
+      @for (item of cartService.cartItems(); track item.id) {
+
+      <div class="cart-item">
+        <img [src]="item.product?.images?.[0]" class="item-image" />
+
+        <div class="item-details">
+          <h5>{{ item.product?.title }}</h5>
+          <p class="item-price">${{ item.product?.price | number: '1.2-2' }}</p>
+        </div>
+
+        <div class="item-controls">
+          <button class="qty-btn" (click)="updateQty(item.id, item.quantity - 1)">−</button>
+          <span class="qty-value">{{ item.quantity }}</span>
+          <button class="qty-btn" (click)="updateQty(item.id, item.quantity + 1)">+</button>
+        </div>
+
+        <p class="item-subtotal">
+          ${{ (item.product?.price ?? 0) * item.quantity}}
+        </p>
+
+        <button class="remove-btn" (click)="remove(item.id)">✕</button>
+
+      </div>
+
+      }
+    </div>
+    <div class="order-summary">
+
+      <h4>Order Summary</h4>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>${{ cartService.subtotal()}}</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span>${{ cartService.shipping}}</span>
+      </div>
+
+      <hr />
+      <div class="summary-row total">
+        <span>Total</span>
+        <span>${{ cartService.total()}}</span>
+      </div>
+
+      <button class="btn btn-success w-100 mt-3" (click)="checkout()">
+        Checkout
+      </button>
+
+      <button class="btn btn-outline-secondary w-100 mt-2" (click)="backToShop()">
+        Back to Shop
+      </button>
+
+    </div>
+
+
+  </div>
+
+  }
+
+</div>

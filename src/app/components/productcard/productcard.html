@@ -1,20 +1,12 @@
-<div
-  class="card product-card"
-  style="width: 18rem"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()"
-  (click)="goToProduct()"
->
-  <img
-    [src]="this.product.images[currentIndex()]"
-    class="card-img-top p-1"
-    [class.fading]="isFading()"
-    height="325"
-  />
+<div class="card product-card" style="width: 18rem" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
+  (click)="goToProduct()">
+  <img [src]="product.images[currentIndex()]" class="card-img-top p-1" [class.fading]="isFading()" height="325" />
 
   <div class="card-body">
-    <h5 class="card-title">{{ this.product.title }}</h5>
-    <p class="card-text text-center">${{ this.product.price }}</p>
-    <a href="#" class="btn btn-primary d-block">add to Cart</a>
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text text-center">${{ product.price }}</p>
+    <button class="btn btn-primary d-block w-100" (click)="addToCart($event)">
+      Add to Cart
+    </button>
   </div>
 </div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+
+import { Component, inject } from '@angular/core';
+import { CartService } from '../../services/cart-service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -7,4 +9,6 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {}
+export class Header {
+  cartService = inject(CartService);
+}

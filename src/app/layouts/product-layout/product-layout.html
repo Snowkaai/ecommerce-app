@@ -1,38 +1,35 @@
 <div class="container-fluid">
-  
+
 
   <div class="row">
-    
+
     <!-- Main Content -->
     <main class="col-md-9 col-lg-9 px-md-4 py-4">
       <div class="d-flex flex-wrap justify-content-center">
         @for (img of product()!.images; track $index) {
-          <img [src]="img" alt="" width="400" height="400" class="m-3" />
+        <img [src]="img" alt="" width="400" height="400" class="m-3" />
         }
       </div>
 
 
       <div>
         <h1>Product Details</h1>
-      <p>{{ product()!.description }}</p>
+        <p>{{ product()!.description }}</p>
       </div>
       <br>
-      <div >
+      <div>
         <h4 class=" fw-bold mb-3 letter-spacing-1">REVIEWS</h4>
         @for(review of product()!.reviews;track $index){
         <!-- Set the rating value here (e.g., 3.2, 4.5, 0.8) -->
-         <div class="card border mb-3 shadow-sm">
-      <div class="card-body">
-             <div
-              class="star-display"
-              style="--rating: {{review.rating}}"
-              aria-label="{{ review.rating }} out of 5 stars"
-            ></div>
+        <div class="card border mb-3 shadow-sm">
+          <div class="card-body">
+            <div class="star-display" style="--rating: {{review.rating}}"
+              aria-label="{{ review.rating }} out of 5 stars"></div>
             <div>
               {{review.comment}}
             </div>
-      </div>
-         </div>
+          </div>
+        </div>
         }
       </div>
     </main>
@@ -45,8 +42,8 @@
           <li class="nav-item">
             <label>${{ product()!.price }}</label>
           </li>
-          <li class="nav-item">  
-            <!--rating-->         
+          <li class="nav-item">
+            <!--rating-->
           </li>
           <li class="nav-item">
             <p>Quantity</p>
@@ -55,7 +52,7 @@
             <button class="btn btn-secondary" (click)="addQuantity()">+</button>
           </li>
           <li class="nav-item">
-            <a class="btn btn-primary" href="#">add to Cart</a>
+            <button class="btn btn-primary" (click)="addToCart($event)">Add to Cart</button>
           </li>
         </ul>
       </div>
