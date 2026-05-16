@@ -12,10 +12,11 @@ import { TermsOfUse } from './components/terms-of-use/terms-of-use';
 import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
 import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
+import { Cart } from './components/components/cart/cart';
 
 export const routes: Routes = [
   {
-    path: '', //Empty path will redirect to main
+    path: '',
     redirectTo: 'main',
     pathMatch: 'full',
   },
@@ -24,7 +25,7 @@ export const routes: Routes = [
     component: HomeLayout,
     children: [
       {
-        path: '', //Empty path will redirect to home
+        path: '',
         redirectTo: 'home',
         pathMatch: 'full',
       },
@@ -40,6 +41,10 @@ export const routes: Routes = [
         path: 'shop/:id',
         component: ProductLayout,
       },
+      {
+        path: 'cart',
+        component: Cart,
+      },
     ],
   },
   {
@@ -47,7 +52,7 @@ export const routes: Routes = [
     component: AuthLayout,
     children: [
       {
-        path: '', //Empty path will redirect to home
+        path: '',
         redirectTo: 'login',
         pathMatch: 'full',
       },

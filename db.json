@@ -4,79 +4,103 @@
       "id": "1",
       "name": "Ali",
       "email": "ali@test.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": [
+        {
+          "id": "b29a4a5d-0edb-4bcc-8ab5-20bc4d73c1f5",
+          "productId": "1",
+          "quantity": 26
+        },
+        {
+          "id": "1a9a43df-1387-49fe-9155-8e1ac22d0a6c",
+          "productId": "2",
+          "quantity": 6
+        }
+      ]
     },
     {
       "id": "YHpE09KPAm8",
       "name": "Ahmed",
       "email": "a@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "VHlWft-3Is4",
       "name": "Marwan",
       "email": "m@gm.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "ecbqFPWE6Aw",
       "name": "test",
       "email": "t@test.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "Jnt8045yznk",
       "name": "islam",
       "email": "eslam@gm.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "-hYpaLHUOTs",
       "name": "anjsv",
       "email": "eslam1@gm.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "yIiWGrG_3N0",
       "name": "eslam",
       "email": "e@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "JfYOp3EPXrg",
       "name": "Ahmed",
       "email": "ahmed1@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "oBGLxvycmnA",
       "name": "Ahmed",
       "email": "a145@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "vd82vONX1AU",
       "name": "haha",
       "email": "agg@hmmdb.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "okvZUd2e8sE",
       "name": "anderw",
       "email": "ag@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "K1L0DOlASOE",
       "name": "farag",
       "email": "farag@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     },
     {
       "id": "viluqtMXFRg",
       "name": "farag",
       "email": "f@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "cart": []
     }
   ],
   "products": [

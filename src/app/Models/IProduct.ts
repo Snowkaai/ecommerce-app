@@ -13,3 +13,9 @@ export interface Review{
     comment:string,
     date:string
 } 
+export interface CartItem {
+  id: string;
+  productId: string;
+  quantity: number;
+  product?: Product;
+}

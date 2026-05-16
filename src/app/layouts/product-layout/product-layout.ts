@@ -1,9 +1,8 @@
-import { Component, inject, numberAttribute, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../Models/IProduct';
-import { QueueAction } from 'rxjs/internal/scheduler/QueueAction';
 import { ProductService } from '../../services/product-service';
-import { NgClass } from '@angular/common';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-product-layout',
@@ -12,25 +11,23 @@ import { NgClass } from '@angular/common';
   styleUrl: './product-layout.css',
 })
 export class ProductLayout {
-  destinationId: Number | null = null;
 
-  productService= inject(ProductService);
-  
+  productService = inject(ProductService);
+  cartService = inject(CartService);
+
   product = signal<Product | null>(null);
-
   Quantity = signal<number>(1);
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.destinationId = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.GetProductById(Number(this.destinationId)).subscribe({
-        next: (data) => {  
-          this.product.set(data);      
-          console.log(this.product);
-        },
-        error: (err) => console.error(err)
-      });
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.productService.GetProductById(id).subscribe({
+      next: (data) => {
+        this.product.set(data);
+      },
+      error: (err) => console.error(err),
+    });
   }
 
   addQuantity() {
@@ -39,9 +36,25 @@ export class ProductLayout {
 
   reduceQuantity() {
     this.Quantity.update((num) => {
-      if (num > 0) {
+      if (num > 1) {
         return num - 1;
-      } else return num;
+      }
+      return num;
     });
+  }
+
+  addToCart(event: MouseEvent) {
+    event.stopPropagation();
+    const currentProduct = this.product();
+    if (!currentProduct) return;
+
+    const userData = localStorage.getItem('user');
+    if (!userData) return;
+
+    const userId = JSON.parse(userData).id;
+
+    for (let i = 0; i < this.Quantity(); i++) {
+      this.cartService.addToCart(userId, currentProduct);
+    }
   }
 }
