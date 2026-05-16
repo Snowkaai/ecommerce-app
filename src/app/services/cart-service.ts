@@ -31,12 +31,10 @@ export class CartService {
     return sum;
   });
 
-  shipping = computed(() => {
-    return this.subtotal() > 0 ? 10 : 0;
-  });
+  shipping: number = 10;
 
   total = computed(() => {
-    return this.subtotal() + this.shipping();
+    return this.subtotal() + this.shipping;
   });
 
   loadCart(userId: string, products: Product[]) {
@@ -46,7 +44,7 @@ export class CartService {
 
         for (let item of user.cart || []) {
           const matchedProduct = products.find((p) => {
-            return String(p.id) === String(item.productId);
+            return String(p.id) == String(item.productId);
           });
 
           cartWithProducts.push({
@@ -62,12 +60,12 @@ export class CartService {
 
   addToCart(userId: string, product: Product) {
     const existingItem = this.cartItems().find((item) => {
-      return String(item.productId) === String(product.id);
+      return String(item.productId) == String(product.id);
     });
 
     if (existingItem) {
       const updatedItems = this.cartItems().map((item) => {
-        if (String(item.productId) === String(product.id)) {
+        if (String(item.productId) == String(product.id)) {
           return { ...item, quantity: item.quantity + 1 };
         }
         return item;
@@ -126,10 +124,6 @@ export class CartService {
       };
     });
 
-    this.http.patch(`${this.baseUrl}/${userId}`, { cart: cartToSave }).subscribe({
-      error: (err) => {
-        console.error('could not save cart', err);
-      },
-    });
+    this.http.patch(`${this.baseUrl}/${userId}`, { cart: cartToSave }).subscribe();
   }
 }
