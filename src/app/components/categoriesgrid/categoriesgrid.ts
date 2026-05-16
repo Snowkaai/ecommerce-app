@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface Category {
   title: string;
@@ -9,7 +10,7 @@ export interface Category {
 
 @Component({
   selector: 'app-categoriesgrid',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './categoriesgrid.html',
   styleUrl: './categoriesgrid.css',
 })

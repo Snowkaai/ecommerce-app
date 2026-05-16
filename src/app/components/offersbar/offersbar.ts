@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 // Shape of one offer item
 export interface Offer {
@@ -10,7 +11,7 @@ export interface Offer {
 
 @Component({
   selector: 'app-offersbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './offersbar.html',
   styleUrl: './offersbar.css',
 })

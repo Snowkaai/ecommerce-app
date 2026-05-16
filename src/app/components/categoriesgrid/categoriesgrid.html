@@ -16,7 +16,7 @@
     -->
 
     @for (category of categories; track $index) {
-      <a class="category-card" [href]="category.link">
+      <a class="category-card" routerLink="/main/shop">
         <div class="category-card__image-wrapper">
           <img [src]="category.imageUrl" [alt]="category.title" class="category-card__image" />
         </div>
