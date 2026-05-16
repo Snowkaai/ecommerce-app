@@ -12,70 +12,62 @@ import { AuthGoogle } from '../../services/auth-google';
 })
 export class Login {
   authService = inject(Authservice);
-   authGoogle = inject(AuthGoogle);
+  authGoogle = inject(AuthGoogle);
   router = inject(Router);
-user = {
+  user = {
     email: '',
-    password: ''
+    password: '',
   };
 
   // router=inject(Router)
   onLogin(form: any) {
-     if (form.invalid) return;
-    this.authService.getUserByEmail(this.user.email)
-      .subscribe(res => {
-        if (res.length === 0) {
-              //alert("Invalid email");
-             
-              return;
-            }
-       const user = res[0];
+    if (form.invalid) return;
+    this.authService.getUserByEmail(this.user.email).subscribe((res) => {
+      if (res.length === 0) {
+        //alert("Invalid email");
 
-  if (user.password !== this.user.password) {
+        return;
+      }
+      const user = res[0];
 
-    //alert("Invalid password");
-    
-    return;
+      if (user.password !== this.user.password) {
+        //alert("Invalid password");
+
+        return;
+      }
+
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', 'fake-token');
+
+      this.router.navigate(['/']);
+    });
+    //     if (form.valid) {
+    //       console.log(this.user);
+    //       localStorage.setItem("email", this.user.email);
+    // this.router.navigate(['/'])
+    //     }
   }
-
-  localStorage.setItem("user", JSON.stringify(user));
-  localStorage.setItem("token", "fake-token");
-
-  this.router.navigate(['/']);
-});
-//     if (form.valid) {
-//       console.log(this.user);
-//       localStorage.setItem("email", this.user.email);
-// this.router.navigate(['/'])
-//     }
-  }
-
 
   login() {
-  this.authGoogle.loginWithGoogle()
-    .then(async res => {
+    this.authGoogle
+      .loginWithGoogle()
+      .then(async (res) => {
+        const user = res.user;
 
-      const user = res.user;
+        const token = await user.getIdToken();
 
-     
-      const token = await user.getIdToken();
+        console.log('User:', user);
+        console.log('Token:', token);
 
-      console.log('User:', user);
-      console.log('Token:', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', token);
 
-      
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", token);
-      
-  this.router.navigate(['/']);
-
-    })
-    .catch(err => console.log(err));
-}
-
-  goToSignup(){
-    
-    this.router.navigate(['/signup'])
+        this.router.navigate(['/']);
+      })
+      .catch((err) => console.log(err));
   }
 
+  goToSignup() {
+    this.router.navigate(['/auth/signup']);
+  }
 }
