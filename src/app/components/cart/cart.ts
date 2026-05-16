@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../../../services/cart-service';
+import { CartService } from '../../services/cart-service';
 import { CommonModule } from '@angular/common';
-import { StripeService } from '../../../services/stripe';
+import { StripeService } from '../../services/stripe';
 
 @Component({
   selector: 'app-cart',

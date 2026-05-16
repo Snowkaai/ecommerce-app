@@ -9,7 +9,7 @@ import { TermsOfUse } from './components/terms-of-use/terms-of-use';
 import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
 import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
-import { Cart } from './components/components/cart/cart';
+import { Cart } from './components/cart/cart';
 import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
 import { Productdetails } from './components/productdetails/productdetails';
 
