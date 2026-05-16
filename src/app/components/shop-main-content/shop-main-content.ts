@@ -16,9 +16,15 @@ export class ShopMainContent {
   }
 
   change(category: string) {
-    this.productService.GetProductByCategory(category).subscribe({
-      next: (data) => this.productService.products.set(data),
-      error: (err) => console.error(err),
-    });
+    if (category == '')
+      this.productService.GetAllProducts().subscribe({
+        next: (data) => this.productService.products.set(data),
+        error: (err) => console.error(err),
+      });
+    else
+      this.productService.GetProductByCategory(category).subscribe({
+        next: (data) => this.productService.products.set(data),
+        error: (err) => console.error(err),
+      });
   }
 }
