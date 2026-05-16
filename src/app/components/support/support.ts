@@ -4,6 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-support',
   imports: [],
   templateUrl: './support.html',
-  styleUrl: './support.css',
 })
 export class Support {}

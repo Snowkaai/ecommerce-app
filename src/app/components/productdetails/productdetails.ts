@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-productdetails',
   imports: [],
   templateUrl: './productdetails.html',
-  styleUrl: './productdetails.css',
 })
 export class Productdetails {
   productService = inject(ProductService);

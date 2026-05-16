@@ -6,7 +6,6 @@ import { ProductList } from '../product-list/product-list';
   selector: 'app-shop-main-content',
   imports: [ProductList],
   templateUrl: './shop-main-content.html',
-  styleUrl: './shop-main-content.css',
 })
 export class ShopMainContent {
   productService = inject(ProductService);

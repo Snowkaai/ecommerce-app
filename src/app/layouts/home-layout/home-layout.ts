@@ -9,10 +9,8 @@ import { ProductService } from '../../services/product-service';
   selector: 'app-home-layout',
   imports: [Header, Footer, RouterOutlet],
   templateUrl: './home-layout.html',
-  styleUrl: './home-layout.css',
 })
 export class HomeLayout implements OnInit {
-
   cartService = inject(CartService);
   productService = inject(ProductService);
 

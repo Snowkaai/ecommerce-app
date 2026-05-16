@@ -8,7 +8,6 @@ import { AuthGoogle } from '../../services/auth-google';
   selector: 'app-signin',
   imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
 })
 export class Login {
   authService = inject(Authservice);
@@ -38,9 +37,8 @@ export class Login {
 
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', 'fake-token');
-      
+
       this.authService.setUser(user);
-      
 
       this.router.navigate(['/']);
     });
@@ -51,22 +49,15 @@ export class Login {
     //     }
   }
 
-   async login() {
+  async login() {
+    try {
+      await this.authGoogle.loginAndSaveUser(this.authService);
 
-  try {
-
-    await this.authGoogle.loginAndSaveUser(this.authService);
-
-    this.router.navigate(['/']);
-
+      this.router.navigate(['/']);
+    } catch (err) {
+      console.log(err);
+    }
   }
-
-  catch(err) {
-
-    console.log(err);
-
-  }
-}
 
   goToSignup() {
     this.router.navigate(['/auth/signup']);

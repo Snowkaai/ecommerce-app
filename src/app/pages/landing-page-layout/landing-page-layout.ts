@@ -9,6 +9,5 @@ import { ChatBot } from '../../components/chat-bot/chat-bot';
   selector: 'app-landing-page-layout',
   imports: [Carousel, Categoriesgrid, Offersbar, Offerstrip, ChatBot],
   templateUrl: './landing-page-layout.html',
-  styleUrl: './landing-page-layout.css',
 })
 export class LandingPageLayout {}

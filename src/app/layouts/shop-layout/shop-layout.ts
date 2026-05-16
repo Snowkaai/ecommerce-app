@@ -6,6 +6,5 @@ import { ShopMainContent } from '../../components/shop-main-content/shop-main-co
   selector: 'app-shop-layout',
   imports: [Sidebar, ShopMainContent],
   templateUrl: './shop-layout.html',
-  styleUrl: './shop-layout.css',
 })
 export class ShopLayout {}

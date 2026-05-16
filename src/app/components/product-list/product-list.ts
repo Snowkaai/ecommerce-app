@@ -7,7 +7,6 @@ import { ProductService } from '../../services/product-service';
   selector: 'app-product-list',
   imports: [Productcard],
   templateUrl: './product-list.html',
-  styleUrl: './product-list.css',
 })
 export class ProductList {
   productService = inject(ProductService);
