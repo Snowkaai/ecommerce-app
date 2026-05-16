@@ -11,7 +11,7 @@ import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
 import { Cart } from './components/components/cart/cart';
 import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
-import { ProductLayout } from './layouts/product-layout/product-layout';
+import { Productdetails } from './components/productdetails/productdetails';
 
 export const routes: Routes = [
   {
@@ -38,7 +38,7 @@ export const routes: Routes = [
       },
       {
         path: 'shop/:id',
-        component: ProductLayout,
+        component: Productdetails,
       },
       {
         path: 'cart',

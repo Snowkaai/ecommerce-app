@@ -1,24 +1,23 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from '../../Models/IProduct';
 import { ProductService } from '../../services/product-service';
 import { CartService } from '../../services/cart-service';
+import { Product } from '../../Models/IProduct';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-product-layout',
+  selector: 'app-productdetails',
   imports: [],
-  templateUrl: './product-layout.html',
-  styleUrl: './product-layout.css',
+  templateUrl: './productdetails.html',
+  styleUrl: './productdetails.css',
 })
-export class ProductLayout {
-
+export class Productdetails {
   productService = inject(ProductService);
   cartService = inject(CartService);
 
   product = signal<Product | null>(null);
   Quantity = signal<number>(1);
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));

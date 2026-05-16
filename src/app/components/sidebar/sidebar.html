@@ -1,51 +1,115 @@
-<div class="d-flex">
-  <!-- Sidebar -->
-  <nav
-    class="d-none d-md-flex flex-column flex-shrink-0 p-3 bg-dark text-white vh-100 sticky-top"
-    style="width: 280px"
-  >
-    <a
-      href="/"
-      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+<nav
+  class="flex flex-col flex-shrink-0 min-h-screen sticky top-0"
+  style="
+    width: 260px;
+    background-color: var(--color-surface);
+    border-right: 1px solid var(--color-surface-border);
+  "
+>
+  <!-- Logo -->
+  <div style="padding: 24px 20px 20px; border-bottom: 1px solid var(--color-surface-border)">
+    <span
+      style="
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        color: var(--color-text-base);
+      "
     >
-      <span class="fs-4">Project Logo</span>
-    </a>
-    <hr />
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">Home</a>
-      </li>
-      <li><a href="#" class="nav-link text-white">Dashboard</a></li>
-      <li><a href="#" class="nav-link text-white">Orders</a></li>
-      <li><a href="#" class="nav-link text-white">Products</a></li>
-      <li><a href="#" class="nav-link text-white">Customers</a></li>
-    </ul>
-    <hr />
-    <div class="dropdown">
+      Project Logo
+    </span>
+  </div>
+
+  <!-- Nav Links -->
+  <ul class="flex flex-col gap-1" style="padding: 16px 12px; list-style: none; margin: 0; flex: 1">
+    <li>
       <a
         href="#"
-        class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-        id="dropdownUser1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
+        style="
+          display: flex;
+          align-items: center;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-muted);
+          text-decoration: none;
+          transition: all 150ms;
+        "
       >
-        <strong>User Profile</strong>
+        Home
       </a>
-    </div>
-  </nav>
-
-  <!-- Mobile Sidebar (Offcanvas) -->
-  <!-- <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Menu</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li><a href="#" class="nav-link active">Home</a></li>
-        <li><a href="#" class="nav-link text-white">Dashboard</a></li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-</div>
+    </li>
+    <li>
+      <a
+        href="#"
+        style="
+          display: flex;
+          align-items: center;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-muted);
+          text-decoration: none;
+          transition: all 150ms;
+        "
+      >
+        Dashboard
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        style="
+          display: flex;
+          align-items: center;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-muted);
+          text-decoration: none;
+          transition: all 150ms;
+        "
+      >
+        Orders
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        style="
+          display: flex;
+          align-items: center;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-muted);
+          text-decoration: none;
+          transition: all 150ms;
+        "
+      >
+        Products
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        style="
+          display: flex;
+          align-items: center;
+          padding: 10px 12px;
+          border-radius: var(--radius-md);
+          font-size: var(--text-sm);
+          font-weight: 500;
+          color: var(--color-text-muted);
+          text-decoration: none;
+          transition: all 150ms;
+        "
+      >
+        Customers
+      </a>
+    </li>
+  </ul>
+</nav>
