@@ -3,6 +3,8 @@ import { Product } from '../../Models/IProduct';
 import { interval, of, Subject, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart-service';
+import { NotificationService } from '../../services/notification-service';
+import { Notfound } from '../../pages/notfound/notfound';
 
 @Component({
   selector: 'app-productcard',
@@ -16,6 +18,7 @@ export class Productcard {
   currentIndex = signal(0);
   isFading = signal(false);
 
+  notify = inject(NotificationService);
   router = inject(Router);
   // inject cart service to call addToCart
   cartService = inject(CartService);
@@ -60,7 +63,7 @@ export class Productcard {
 
     const userData = localStorage.getItem('user');
     console.log('userData:', userData);
-    if (!userData){
+    if (!userData) {
       this.router.navigate(['/auth/login']);
       return;
     }
@@ -70,5 +73,7 @@ export class Productcard {
 
     this.cartService.addToCart(userId, this.product);
     console.log('cart items after add:', this.cartService.cartItems());
+
+    this.notify.success('Item Added to Cart', 2000);
   }
 }

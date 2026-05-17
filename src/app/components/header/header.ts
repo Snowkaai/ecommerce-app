@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart-service';
 import { RouterLink } from '@angular/router';
 import { Authservice } from '../../services/authservice';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,12 @@ import { Authservice } from '../../services/authservice';
   templateUrl: './header.html',
 })
 export class Header {
-logout() {
-this.authServcie.logout();
-}
-  authServcie=inject(Authservice);
+  authServcie = inject(Authservice);
   cartService = inject(CartService);
+  notify = inject(NotificationService);
+
+  logout() {
+    this.authServcie.logout();
+    this.notify.info('Logged Out', 3000);
+  }
 }

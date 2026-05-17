@@ -4,134 +4,171 @@
       "id": "1",
       "name": "Ali",
       "email": "ali@test.com",
+      "phone": "0111111111",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
-      "orders": [
-        {
-          "id": "4350bd65-6a62-407d-a7a6-a9d2752e9201",
-          "items": [
-            {
-              "name": "Red Lipstick",
-              "price": 12.99,
-              "quantity": 1,
-              "image": "https://cdn.dummyjson.com/product-images/beauty/red-lipstick/1.webp"
-            }
-          ],
-          "total": 12.99,
-          "orderDate": "2026-05-17T20:55:02.884Z"
-        }
-      ]
+      "orders": []
     },
     {
       "id": "YHpE09KPAm8",
       "name": "Ahmed",
+      "phone": "0111111111",
       "email": "a@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "VHlWft-3Is4",
       "name": "Marwan",
+      "phone": "0111111111",
       "email": "m@gm.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "ecbqFPWE6Aw",
       "name": "test",
+      "phone": "0111111111",
       "email": "t@test.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "Jnt8045yznk",
       "name": "islam",
+      "phone": "0111111111",
       "email": "eslam@gm.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "-hYpaLHUOTs",
       "name": "anjsv",
+      "phone": "0111111111",
       "email": "eslam1@gm.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "yIiWGrG_3N0",
       "name": "eslam",
+      "phone": "0111111111",
       "email": "e@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "JfYOp3EPXrg",
       "name": "Ahmed",
+      "phone": "0111111111",
       "email": "ahmed1@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "oBGLxvycmnA",
       "name": "Ahmed",
+      "phone": "0111111111",
       "email": "a145@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "vd82vONX1AU",
       "name": "haha",
+      "phone": "0111111111",
       "email": "agg@hmmdb.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "okvZUd2e8sE",
       "name": "anderw",
+      "phone": "0111111111",
       "email": "ag@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "K1L0DOlASOE",
       "name": "farag",
+      "phone": "0111111111",
       "email": "farag@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "viluqtMXFRg",
       "name": "farag",
+      "phone": "0111111111",
       "email": "f@gmail.com",
       "password": "123456",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "s7Lr9MjkKnc",
       "name": "mai",
+      "phone": "0111111111",
       "email": "mai@gmail.com",
       "password": "123457",
+      "wishlist": [],
       "cart": [],
       "orders": []
     },
     {
       "id": "VzC4yXG5S_k",
       "name": "Test",
+      "phone": "0111111111",
       "email": "testahmed9266@gmail.com",
       "photo": "https://lh3.googleusercontent.com/a/ACg8ocJLDZAUJr58jfDV076k0oUVyvtuP5T_gEDuFzCOKfb6BSH_ig=s96-c",
       "provider": "google",
+      "wishlist": [],
+      "cart": [],
+      "orders": []
+    },
+    {
+      "id": "FcsFB0J_3Po",
+      "name": "Andrew",
+      "email": "aaaa@112122.com",
+      "password": "123456",
+      "phone": "012341234123",
+      "wishlist": [],
+      "cart": [],
+      "orders": []
+    },
+    {
+      "id": "Vrwyzop0clc",
+      "name": "Andrew Hany440",
+      "email": "andrewfarid444@gmail.com",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocKqhVw2qCeSG8ChagRO86JZq1kdAkvpSphSJlIdR7vHll1wOg=s96-c",
+      "phone": null,
+      "provider": "google",
+      "wishlist": [],
       "cart": [],
       "orders": []
     }

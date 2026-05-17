@@ -2,12 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithPopup, signOut, user } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { Authservice } from './authservice';
+import { appuser } from '../Models/User';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGoogle {
-
   private auth = inject(Auth);
 
   //user observable (reactive)
@@ -18,54 +18,50 @@ export class AuthGoogle {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(this.auth, provider);
   }
-async loginAndSaveUser(authService: Authservice) {
+  async loginAndSaveUser(authService: Authservice) {
+    const res = await this.loginWithGoogle();
 
-  const res = await this.loginWithGoogle();
+    const firebaseUser = res.user;
 
-  const firebaseUser = res.user;
+    const token = await firebaseUser.getIdToken();
 
-  const token = await firebaseUser.getIdToken();
+    const email = firebaseUser.email ?? '';
 
-  const email = firebaseUser.email ?? '';
+    authService
+      .getUserByEmail(email)
 
-  authService.getUserByEmail(email)
+      .subscribe((users) => {
+        // new user
+        if (users.length === 0) {
+          const newUser: appuser = {
+            id: firebaseUser.uid,
+            name: firebaseUser.displayName ?? 'Google User',
+            email: firebaseUser.email!,
+            photo: firebaseUser.photoURL!,
+            phone: firebaseUser.phoneNumber!,
+            wishlist: [],
+            cart: [],
+            provider: 'google',
+          };
 
-    .subscribe(users => {
+          authService
+            .signup(newUser)
 
-      // new user
-      if (users.length === 0) {
+            .subscribe(() => {
+              authService.setUser(newUser);
 
-        const newUser = {
+              localStorage.setItem('token', token);
+            });
+        }
 
-          id: firebaseUser.uid,
-          name: firebaseUser.displayName ?? 'Google User',
-          email: firebaseUser.email,
-          photo: firebaseUser.photoURL,
-          provider: 'google',
-          cart: []
-        };
+        // existing user
+        else {
+          authService.setUser(users[0]);
 
-        authService.signup(newUser)
-
-          .subscribe(() => {
-
-            authService.setUser(newUser);
-
-            localStorage.setItem('token', token);
-          });
-
-      }
-
-      // existing user
-      else {
-
-        authService.setUser(users[0]);
-
-        localStorage.setItem('token', token);
-      }
-
-    });
-}
+          localStorage.setItem('token', token);
+        }
+      });
+  }
   // Logout
   logout() {
     return signOut(this.auth);
@@ -74,5 +70,4 @@ async loginAndSaveUser(authService: Authservice) {
   getCurrentUser() {
     return this.auth.currentUser;
   }
-  
 }

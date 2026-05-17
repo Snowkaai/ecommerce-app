@@ -3,6 +3,8 @@ import { ProductService } from '../../services/product-service';
 import { CartService } from '../../services/cart-service';
 import { Product } from '../../Models/IProduct';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../../services/notification-service';
+import { Notfound } from '../../pages/notfound/notfound';
 
 @Component({
   selector: 'app-productdetails',
@@ -10,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './productdetails.html',
 })
 export class Productdetails {
+  notify = inject(NotificationService);
   productService = inject(ProductService);
   cartService = inject(CartService);
 
@@ -48,7 +51,7 @@ export class Productdetails {
     if (!currentProduct) return;
 
     const userData = localStorage.getItem('user');
-     if (!userData){
+    if (!userData) {
       this.router.navigate(['/auth/login']);
       return;
     }
@@ -58,5 +61,6 @@ export class Productdetails {
     for (let i = 0; i < this.Quantity(); i++) {
       this.cartService.addToCart(userId, currentProduct);
     }
+    this.notify.success('Item Added to Cart', 2000);
   }
 }

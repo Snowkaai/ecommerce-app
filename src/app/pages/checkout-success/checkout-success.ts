@@ -16,6 +16,7 @@ export class CheckoutSuccess {
     ? JSON.parse(localStorage.getItem('user') || '{}').id
     : null;
   cartService = inject(CartService);
+
   http = inject(HttpClient);
 
   
@@ -48,4 +49,5 @@ export class CheckoutSuccess {
     }
   });
 }
+
 }

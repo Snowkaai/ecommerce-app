@@ -1,29 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from './services/product-service';
+import { NotificationComponent } from './components/notification-component/notification-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NotificationComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('ecommerce-app');
-
-  productService=inject(ProductService);
-
-  ngOnInit(){
-  //   this.productService.GetAllProducts();
-  //   this.productService.GetProductById(1);
-  //   this.productService.GetProductById(2);
-  //   this.productService.GetProductByCategory("beauty")
-  // .subscribe({
-  //   next: (data) => {this.productService.products.set(data);
-  //     console.log(this.productService.products());
-  //   },
-  //   error: (err) => console.error(err)
-  // });
-  }
-  
+  protected readonly title = signal('ShopVerse');
 }
