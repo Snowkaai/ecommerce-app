@@ -12,6 +12,7 @@ import { Support } from './components/support/support';
 import { Cart } from './components/cart/cart';
 import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
 import { Productdetails } from './components/productdetails/productdetails';
+import { authguardGuard } from './guards/authguard-guard';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,7 @@ export const routes: Routes = [
       },
       {
         path: 'cart',
+        canActivate:[authguardGuard],
         component: Cart,
       },
     ],

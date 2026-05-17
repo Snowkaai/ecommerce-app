@@ -57,7 +57,13 @@
       </a>
 
       <!-- Login Button -->
+       @if(this.authServcie.isLoggedIn())
+       {
+        <a routerLink="/main/home" class="btn btn-primary" (click)="logout()">Logout</a>
+       }
+       @else{
       <a routerLink="/auth/login" class="btn btn-primary">Login</a>
+       }
     </div>
   </div>
 </header>

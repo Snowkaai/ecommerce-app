@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { CartService } from '../../services/cart-service';
 import { Product } from '../../Models/IProduct';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-productdetails',
@@ -16,6 +16,7 @@ export class Productdetails {
   product = signal<Product | null>(null);
   Quantity = signal<number>(1);
 
+  router = inject(Router);
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -47,7 +48,10 @@ export class Productdetails {
     if (!currentProduct) return;
 
     const userData = localStorage.getItem('user');
-    if (!userData) return;
+     if (!userData){
+      this.router.navigate(['/auth/login']);
+      return;
+    }
 
     const userId = JSON.parse(userData).id;
 

@@ -60,7 +60,10 @@ export class Productcard {
 
     const userData = localStorage.getItem('user');
     console.log('userData:', userData);
-    if (!userData) return;
+    if (!userData){
+      this.router.navigate(['/auth/login']);
+      return;
+    }
 
     const userId = JSON.parse(userData).id;
     console.log('userId:', userId);
