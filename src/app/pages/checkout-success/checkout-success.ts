@@ -9,9 +9,14 @@ import { CartService } from '../../services/cart-service';
   styleUrl: './checkout-success.css',
 })
 export class CheckoutSuccess {
-  userId = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || '{}').id : null;
+  userId = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user') || '{}').id
+    : null;
   cartService = inject(CartService);
   ngOnInit(): void {
+    // Inject User Service
+    // Add to user Orders current Cart + date in new object ==> order
+    // new order => {cartservice.cart ....}
     this.cartService.clearCart(this.userId);
   }
 }

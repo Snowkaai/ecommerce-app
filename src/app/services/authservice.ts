@@ -22,25 +22,19 @@ export class Authservice {
   signup(user: any) {
     return this.http.post(this.url, user);
   }
-getUserByEmail(email: string) {
-  return this.http.get<any[]>(
-    `${this.url}?email=${email}`
-  );}
-  login(email: string, password: string) {
-    return this.http.get<any[]>(
-      `${this.url}?email=${email}&password=${password}`
-    );
+  getUserByEmail(email: string) {
+    return this.http.get<any[]>(`${this.url}?email=${email}`);
   }
-    setUser(user: any) {
-
+  login(email: string, password: string) {
+    return this.http.get<any[]>(`${this.url}?email=${email}&password=${password}`);
+  }
+  setUser(user: any) {
     localStorage.setItem('user', JSON.stringify(user));
 
     this.currentUser.set(user);
   }
 
- 
   logout() {
-
     localStorage.removeItem('user');
     localStorage.removeItem('token');
 
