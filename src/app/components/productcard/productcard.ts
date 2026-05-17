@@ -14,6 +14,7 @@ import { Notfound } from '../../pages/notfound/notfound';
 })
 export class Productcard {
   @Input() product!: Product;
+  @Input() ShopVerseChoice: boolean = false;
 
   currentIndex = signal(0);
   isFading = signal(false);
