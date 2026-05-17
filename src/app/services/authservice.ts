@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
+import { appuser } from '../Models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 export class Authservice {
   http = inject(HttpClient);
   url = 'http://localhost:3000/users';
-  currentUser = signal<any | null>(null);
+  currentUser = signal<appuser | null>(null);
 
   isLoggedIn = computed(() => !!this.currentUser());
 
@@ -28,9 +29,9 @@ export class Authservice {
   login(email: string, password: string) {
     return this.http.get<any[]>(`${this.url}?email=${email}&password=${password}`);
   }
-  setUser(user: any) {
+  setUser(user: appuser) {
     localStorage.setItem('user', JSON.stringify(user));
-
+    localStorage.setItem('token', 'fake-token');
     this.currentUser.set(user);
   }
 

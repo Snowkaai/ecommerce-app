@@ -6,3 +6,18 @@
 //   "cart": CartItem[]
 //   "Wishlist" : int[] ==>products
 //   "Orders" : DoneOrder[] => {cartitem[] , total , date}
+
+import { CartItem, Product } from './IProduct';
+
+export interface appuser {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  password?: string;
+  photo?: string;
+  provider?: 'local' | 'google';
+  cart: CartItem[];
+  wishlist: number[];
+  // Order:
+}

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Authservice } from '../../services/authservice';
 import { AuthGoogle } from '../../services/auth-google';
+import { appuser } from '../../Models/User';
 
 @Component({
   selector: 'app-signin',
@@ -27,16 +28,13 @@ export class Login {
 
         return;
       }
-      const user = res[0];
+      const user: appuser = res[0];
 
       if (user.password !== this.user.password) {
         //alert("Invalid password");
 
         return;
       }
-
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', 'fake-token');
 
       this.authService.setUser(user);
 

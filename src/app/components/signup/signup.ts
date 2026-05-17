@@ -9,6 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { AuthGoogle } from '../../services/auth-google';
 import { Authservice } from '../../services/authservice';
+import { appuser } from '../../Models/User';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +22,7 @@ export class Signup {
   signupForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('', [Validators.required]),
   });
@@ -53,12 +55,16 @@ export class Signup {
     console.log('Signup Data:', this.signupForm);
     const email = data.email ?? '';
 
-    const user = {
+    const user: appuser = {
       id: crypto.randomUUID(),
-      name: data.name,
-      email: data.email,
-      password: data.password,
+      name: data.name!,
+      email: data.email!,
+      password: data.password!,
+      wishlist: [],
+      phone: data.phone!,
       cart: [],
+      // photo:
+      // provider
     };
     this.authService.getUserByEmail(email).subscribe((res) => {
       if (res.length > 0) {
