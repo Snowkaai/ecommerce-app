@@ -13,6 +13,7 @@ import { Cart } from './components/cart/cart';
 import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
 import { Productdetails } from './components/productdetails/productdetails';
 import { authguardGuard } from './guards/authguard-guard';
+import { CheckoutSuccess } from './pages/checkout-success/checkout-success';
 
 export const routes: Routes = [
   {
@@ -82,6 +83,10 @@ export const routes: Routes = [
   {
     path: 'support',
     component: Support,
+  },
+  {
+    path: 'checkout/success',
+    component: CheckoutSuccess,
   },
   {
     path: '**',

@@ -18,9 +18,10 @@ app.post('/create-checkout-session', async (req, res) => {
       price_data: {
       currency: 'usd',
       product_data: {
-          name: item.title,
+          name: item.name,
+          images: item.image ? [item.image] : [],
       },
-      unit_amount: item.price * 100,
+      unit_amount: Math.round(item.price * 100),
       },
       quantity: item.quantity,
   }));
@@ -29,7 +30,7 @@ app.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items,
-      success_url: 'http://localhost:4200/success',
+      success_url: 'http://localhost:4200/checkout/success?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'http://localhost:4200/cart',
   });
 
