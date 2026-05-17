@@ -7,7 +7,7 @@
 //   "Wishlist" : int[] ==>products
 //   "Orders" : DoneOrder[] => {cartitem[] , total , date}
 
-import { CartItem, Product } from './IProduct';
+import { CartItem } from './ICartItem';
 
 export interface appuser {
   id: string;
