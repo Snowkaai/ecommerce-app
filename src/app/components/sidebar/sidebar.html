@@ -6,24 +6,11 @@
     border-right: 1px solid var(--color-surface-border);
   "
 >
-  <!-- Logo -->
-  <div style="padding: 24px 20px 20px; border-bottom: 1px solid var(--color-surface-border)">
-    <span
-      style="
-        font-family: var(--font-display);
-        font-size: var(--text-xl);
-        color: var(--color-text-base);
-      "
-    >
-      Project Logo
-    </span>
-  </div>
-
   <!-- Nav Links -->
   <ul class="flex flex-col gap-1" style="padding: 16px 12px; list-style: none; margin: 0; flex: 1">
     <li>
       <a
-        href="#"
+        (click)="AllItems()"
         style="
           display: flex;
           align-items: center;
@@ -36,12 +23,12 @@
           transition: all 150ms;
         "
       >
-        Home
+        All Items
       </a>
     </li>
     <li>
       <a
-        href="#"
+        (click)="getShopVerseChoices()"
         style="
           display: flex;
           align-items: center;
@@ -54,9 +41,13 @@
           transition: all 150ms;
         "
       >
-        Dashboard
+        <span style="color: #ffd700">★ ★ ★</span>&nbsp;Editors' Choice&nbsp;<span
+          style="color: #ffd700"
+          >★ ★ ★</span
+        >
       </a>
     </li>
+
     <li>
       <a
         href="#"

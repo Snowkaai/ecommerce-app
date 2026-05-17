@@ -2,7 +2,10 @@
   <div class="flex flex-wrap gap-3">
     @if (productService.filteredProducts()) {
       @for (item of productService.filteredProducts(); track item.id) {
-        <app-productcard [product]="item"></app-productcard>
+        <app-productcard
+          [product]="item"
+          [ShopVerseChoice]="productService.ShopVerseChoice()"
+        ></app-productcard>
       }
     }
   </div>

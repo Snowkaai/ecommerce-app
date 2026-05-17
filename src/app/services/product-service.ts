@@ -2,91 +2,112 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Product, Review } from '../Models/IProduct';
 import { baseURL } from '../Models/api';
-import { map } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  http= inject(HttpClient);
-  products= signal<Product[]>([]);
+  http = inject(HttpClient);
+  products = signal<Product[]>([]);
   search = signal('');
+  ShopVerseChoice = signal(false);
 
-
-   filteredProducts = computed(() => {
+  filteredProducts = computed(() => {
     const query = this.search().toLowerCase();
     if (!query) return this.products();
-    return this.products().filter((prod) =>
-      prod.title.toLowerCase().includes(query) ||
-      prod.category.toLowerCase().includes(query) ||
-      prod.price.toString().includes(query)
+    return this.products().filter(
+      (prod) =>
+        prod.title.toLowerCase().includes(query) ||
+        prod.category.toLowerCase().includes(query) ||
+        prod.price.toString().includes(query),
     );
   });
 
+  GetAllProducts() {
+    return this.http.get<any[]>(baseURL + '/products').pipe(
+      map((data) =>
+        data.map((prod) => ({
+          id: prod.id,
+          title: prod.title,
+          description: prod.description,
+          price: prod.price,
+          category: prod.category,
+          images: prod.images,
+          reviews: prod.reviews.map((r: Review) => ({
+            rating: r.rating,
+            comment: r.comment,
+            date: r.date,
+            reviewerName: r.reviewerName,
+          })),
+        })),
+      ),
+    );
+  }
 
- GetAllProducts() {
-  return this.http.get<any[]>(baseURL + '/products').pipe(
-    map((data) => data.map((prod) => ({
-      id: prod.id,
-      title: prod.title,
-      description:prod.description,
-      price: prod.price,
-      category: prod.category,
-      images:prod.images,
-      reviews:prod.reviews.map(
-        (r:Review)=>({
-          rating:r.rating,
-          comment:r.comment,
-          date:r.date,
-          reviewerName:r.reviewerName
-        })
-      )
-    })))
-  )
-}
+  //get only products with rating higher than 4
+  GetShopVerseChoice() {
+    return this.http.get<any[]>(baseURL + '/products').pipe(
+      map((data) =>
+        data
+          // 1. Transform the products into the shape you want
+          .map((prod) => ({
+            id: prod.id,
+            title: prod.title,
+            description: prod.description,
+            price: prod.price,
+            category: prod.category,
+            images: prod.images,
+            rating: prod.rating, // Included this so you can filter by it
+            reviews: prod.reviews.map((r: Review) => ({
+              rating: r.rating,
+              comment: r.comment,
+              date: r.date,
+              reviewerName: r.reviewerName,
+            })),
+          }))
+          // 2. Filter the newly mapped array (keeps products with rating > 4.5)
+          .filter((prod) => prod.rating > 4.5),
+      ),
+    );
+  }
 
+  GetProductById(id: number) {
+    return this.http.get<any>(baseURL + `/products/${id}`).pipe(
+      map((data) => ({
+        id: data.id,
+        title: data.title,
+        description: data.description,
+        price: data.price,
+        category: data.category,
+        images: data.images,
+        reviews: data.reviews.map((r: Review) => ({
+          rating: r.rating,
+          comment: r.comment,
+          date: r.date,
+          reviewerName: r.reviewerName,
+        })),
+      })),
+    );
+  }
 
-GetProductById(id:number){
- return this.http.get<any>(baseURL + `/products/${id}`).pipe(
-    map((data) => ({
-      id: data.id,
-      title: data.title,
-      description:data.description,
-      price: data.price,
-      category: data.category,
-      images:data.images,
-      reviews:data.reviews.map(
-        (r:Review)=>({
-          rating:r.rating,
-          comment:r.comment,
-          date:r.date,
-          reviewerName:r.reviewerName
-        })
-      )
-    })))
-}
-
-GetProductByCategory(category:string|null){
-   return this.http.get<any[]>(baseURL + `/products?category=${category}`).pipe(
-    map((data) => data.map((prod) => ({
-      id: prod.id,
-      title: prod.title,
-      description:prod.description,
-      price: prod.price,
-      category: prod.category,
-      images:prod.images,
-      reviews:prod.reviews?.map(
-        (r:Review)=>({
-          rating:r.rating,
-          comment:r.comment,
-          date:r.date
-        })
-      )
-    })))
-  )
-}
-
-
-
-
+  GetProductByCategory(category: string | null) {
+    return this.http.get<any[]>(baseURL + `/products?category=${category}`).pipe(
+      map((data) =>
+        data.map((prod) => ({
+          id: prod.id,
+          title: prod.title,
+          description: prod.description,
+          price: prod.price,
+          category: prod.category,
+          images: prod.images,
+          reviews: prod.reviews?.map((r: Review) => ({
+            rating: r.rating,
+            comment: r.comment,
+            date: r.date,
+          })),
+        })),
+      ),
+    );
+  }
 }
