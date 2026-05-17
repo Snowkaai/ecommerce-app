@@ -37,7 +37,8 @@ export class ProductService {
         (r:Review)=>({
           rating:r.rating,
           comment:r.comment,
-          date:r.date
+          date:r.date,
+          reviewerName:r.reviewerName
         })
       )
     })))
@@ -58,7 +59,8 @@ GetProductById(id:number){
         (r:Review)=>({
           rating:r.rating,
           comment:r.comment,
-          date:r.date
+          date:r.date,
+          reviewerName:r.reviewerName
         })
       )
     })))

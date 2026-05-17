@@ -11,7 +11,8 @@ export interface Product{
 export interface Review{
     rating:number,
     comment:string,
-    date:string
+    date:string,
+    reviewerName:string
 } 
 export interface CartItem {
   id: string;
