@@ -11,7 +11,7 @@
         {
           "id": "b29a4a5d-0edb-4bcc-8ab5-20bc4d73c1f5",
           "productId": "1",
-          "quantity": 34
+          "quantity": 35
         },
         {
           "id": "ad884c7e-9e0e-4c8b-b80b-eabbd567a782",
@@ -26,12 +26,17 @@
         {
           "id": "6f885bd5-4e83-4e50-8fb7-49b05496ca81",
           "productId": "2",
-          "quantity": 7
+          "quantity": 9
         },
         {
           "id": "3288c2d5-b42d-4ac1-9d43-75134962bf27",
           "productId": "3",
           "quantity": 1
+        },
+        {
+          "id": "758972da-a7eb-49f5-9445-455a1e2202e1",
+          "productId": "19",
+          "quantity": 4
         }
       ]
     },
@@ -170,6 +175,16 @@
       "wishlist": [],
       "phone": "012341234123",
       "cart": []
+    },
+    {
+      "id": "Vrwyzop0clc",
+      "name": "Andrew Hany440",
+      "email": "andrewfarid444@gmail.com",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocKqhVw2qCeSG8ChagRO86JZq1kdAkvpSphSJlIdR7vHll1wOg=s96-c",
+      "phone": null,
+      "wishlist": [],
+      "cart": [],
+      "provider": "google"
     }
   ],
   "products": [

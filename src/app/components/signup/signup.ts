@@ -10,6 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthGoogle } from '../../services/auth-google';
 import { Authservice } from '../../services/authservice';
 import { appuser } from '../../Models/User';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +20,8 @@ import { appuser } from '../../Models/User';
 export class Signup {
   authService = inject(Authservice);
   router = inject(Router);
+  notify = inject(NotificationService);
+
   signupForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -36,8 +39,8 @@ export class Signup {
     try {
       await this.authGoogle.loginAndSaveUser(this.authService);
       localStorage.setItem('status', this.authService.isLoggedIn().toString());
-
       this.router.navigate(['/']);
+      this.notify.success('Signed Up Successfully', 3000);
     } catch (err) {
       console.log(err);
     }
@@ -66,6 +69,7 @@ export class Signup {
       // photo:
       // provider
     };
+
     this.authService.getUserByEmail(email).subscribe((res) => {
       if (res.length > 0) {
         //alert("Email already exists");
@@ -75,7 +79,7 @@ export class Signup {
       this.authService.signup(user).subscribe(() => {
         //alert("User created successfully");
         // this.notification.show('User created successfully', 'success');
-
+        this.notify.success('Signed Up Successfully', 3000);
         this.router.navigate(['/auth/login']);
       });
     });
