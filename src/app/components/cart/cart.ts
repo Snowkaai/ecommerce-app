@@ -36,17 +36,23 @@ export class Cart implements OnInit {
     }
   }
 
-  checkout() {
-    const cartForStripe = this.cartService.cartItems().map((item) => ({
-      name: item.product?.title,
-      price: item.product?.price,
-      quantity: item.quantity,
-      image: item.product?.images?.[0],
-    }));
-    this.stripeService.checkout(cartForStripe);
-  }
+checkout() {
+  const cartForStripe = this.cartService.cartItems().map((item) => ({
+    name: item.product?.title,
+    price: item.product?.price,
+    quantity: item.quantity,
+    image: item.product?.images?.[0],
+  }));
+
+
+  this.stripeService.checkout(cartForStripe);
+}
+
+
 
   backToShop() {
     this.router.navigate(['/main/shop']);
   }
+
+  
 }

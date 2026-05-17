@@ -8,20 +8,26 @@ import { environment } from '../../environments/environment';
 export class StripeService {
 
   checkout(cart: any[]) {
-    return fetch('http://localhost:4242/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ cart })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error('No checkout URL returned');
-      }
-    });
-  }
+
+  // save cart and total for order
+  localStorage.setItem('Cart', JSON.stringify(cart));
+  localStorage.setItem('Total', JSON.stringify(
+    cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  ));
+
+
+  return fetch('http://localhost:4242/create-checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cart })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      console.error('No checkout URL returned');
+    }
+  });
+}
 }

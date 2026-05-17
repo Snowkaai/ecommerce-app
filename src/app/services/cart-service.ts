@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { CartItem, Product } from '../Models/IProduct';
+import { CartItem } from '../Models/ICartItem';
+import { Product } from '../Models/IProduct';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
