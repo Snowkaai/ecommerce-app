@@ -11,6 +11,14 @@ export class Authservice {
 
   isLoggedIn = computed(() => !!this.currentUser());
 
+  constructor() {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      this.currentUser.set(JSON.parse(user));
+    }
+  }
+
   signup(user: any) {
     return this.http.post(this.url, user);
   }
