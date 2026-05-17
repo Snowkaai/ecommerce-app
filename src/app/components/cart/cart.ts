@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../../services/cart-service';
 import { CommonModule } from '@angular/common';
 import { StripeService } from '../../services/stripe';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import { StripeService } from '../../services/stripe';
 })
 export class Cart implements OnInit {
   cartService = inject(CartService);
+  notify = inject(NotificationService);
   router = inject(Router);
   stripeService = inject(StripeService);
 
@@ -34,6 +36,7 @@ export class Cart implements OnInit {
     if (this.userId) {
       this.cartService.removeFromCart(this.userId, itemId);
     }
+    this.notify.info('Removed item from cart', 2000);
   }
 
   checkout() {
