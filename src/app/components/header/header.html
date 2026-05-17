@@ -56,14 +56,36 @@
         }
       </a>
 
-      <!-- Login Button -->
-       @if(this.authServcie.isLoggedIn())
-       {
+      <!-- Profile Button (visible when logged in) -->
+      @if (authServcie.isLoggedIn()) {
+        <a
+          routerLink="/main/profile"
+          class="relative flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface hover:bg-brand-light transition"
+          title="My Profile"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-text-base"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5.121 17.804A8 8 0 1118.88 6.196M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </a>
+      }
+
+      <!-- Login / Logout Button -->
+      @if (authServcie.isLoggedIn()) {
         <a routerLink="/main/home" class="btn btn-primary" (click)="logout()">Logout</a>
-       }
-       @else{
-      <a routerLink="/auth/login" class="btn btn-primary">Login</a>
-       }
+      } @else {
+        <a routerLink="/auth/login" class="btn btn-primary">Login</a>
+      }
     </div>
   </div>
 </header>
