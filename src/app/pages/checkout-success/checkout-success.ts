@@ -4,6 +4,8 @@ import { CartService } from '../../services/cart-service';
 import { HttpClient } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
 import { Order } from '../../Models/IOrder';
+import { CartItem } from '../../Models/ICartItem';
+import { appuser } from '../../Models/User';
 
 @Component({
   selector: 'app-checkout-success',
@@ -13,20 +15,26 @@ import { Order } from '../../Models/IOrder';
 })
 export class CheckoutSuccess {
   userId = localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user') || '{}').id
-    : null;
+  ? JSON.parse(localStorage.getItem('user') || '{}').id
+  : null;
+  
   cartService = inject(CartService);
-
   http = inject(HttpClient);
 
   
  ngOnInit(): void {
-  const cartSnapshot = JSON.parse(localStorage.getItem('Cart') || '[]');
   const totalSnapshot = parseFloat(localStorage.getItem('Total') || '0');
 
-  this.http.get<any>(`http://localhost:3000/users/${this.userId}`).subscribe({
+  this.http.get<appuser>(`http://localhost:3000/users/${this.userId}`).subscribe({
     next: (user) => {
-      const newOrder: Order = {
+      const cartSnapshot: CartItem[] = user.cart || [];
+
+      console.log(cartSnapshot);
+
+      if (cartSnapshot.length === 0) {
+        return;
+      }
+      const newOrder: Order   = {
         id: uuidv4(),
         items: cartSnapshot,
         total: totalSnapshot,
@@ -47,6 +55,7 @@ export class CheckoutSuccess {
         }
       });
     }
+    
   });
 }
 
