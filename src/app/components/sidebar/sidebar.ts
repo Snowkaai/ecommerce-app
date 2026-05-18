@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductService } from '../../services/product-service';
+import { WishlistService } from '../../services/wishlist-service';
+import { Authservice } from '../../services/authservice';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +9,17 @@ import { ProductService } from '../../services/product-service';
   templateUrl: './sidebar.html',
 })
 export class Sidebar {
+
+  wishlistService=inject(WishlistService);
+  user=inject(Authservice);
+  
+getWishlist() {
+   const currentUser = this.user.currentUser();
+  if (currentUser){
+  this.wishlistService.GetWishlist(currentUser);
+  }
+}
+
   productserv = inject(ProductService);
 
   getShopVerseChoices() {

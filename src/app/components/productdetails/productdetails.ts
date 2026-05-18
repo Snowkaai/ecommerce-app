@@ -5,6 +5,8 @@ import { Product } from '../../Models/IProduct';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../services/notification-service';
 import { Notfound } from '../../pages/notfound/notfound';
+import { WishlistService } from '../../services/wishlist-service';
+import { Authservice } from '../../services/authservice';
 
 @Component({
   selector: 'app-productdetails',
@@ -12,6 +14,25 @@ import { Notfound } from '../../pages/notfound/notfound';
   templateUrl: './productdetails.html',
 })
 export class Productdetails {
+
+wishlistService=inject(WishlistService);
+user=inject(Authservice)
+
+addToWishlist(productId: number) {
+  const currentUser = this.user.currentUser();
+  if (!currentUser) return;
+    if (this.isInWishlist(productId)) {
+    this.wishlistService.RemoveFromWishlist(Number(productId), currentUser);
+  } else {
+    this.wishlistService.AddToWishlist(Number(productId), currentUser);
+  }
+}
+
+isInWishlist(productId: number) {
+  return this.user.currentUser()?.wishlist.includes(Number(productId));
+}
+
+
   notify = inject(NotificationService);
   productService = inject(ProductService);
   cartService = inject(CartService);

@@ -203,6 +203,11 @@
 
       <!-- Add to cart -->
       <button class="btn-primary w-full" (click)="addToCart($event)">Add to Cart</button>
+
+      <button class="btn-secondary w-full mt-3" (click)="addToWishlist(product()!.id)">
+          <span style="font-size: 18px;">♡</span>  {{ isInWishlist(product()!.id) ? 'Remove from wishlist' : 'Add to Wishlist' }}
+        </button>
+        
     </div>
   </div>
 </div>
