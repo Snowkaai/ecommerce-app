@@ -8,6 +8,7 @@
 //   "Orders" : DoneOrder[] => {cartitem[] , total , date}
 
 import { CartItem } from './ICartItem';
+import { Order } from './IOrder';
 import { Product } from './IProduct';
 
 export interface appuser {
@@ -20,5 +21,5 @@ export interface appuser {
   provider?: 'local' | 'google';
   cart: CartItem[];
   wishlist: number[];
-  // Order:
+  orders: Order[];
 }

@@ -64,6 +64,7 @@ export class Signup {
       email: data.email!,
       password: data.password!,
       wishlist: [],
+      orders: [],
       phone: data.phone!,
       cart: [],
       // photo:
