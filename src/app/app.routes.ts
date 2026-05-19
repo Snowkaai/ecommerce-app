@@ -9,9 +9,13 @@ import { TermsOfUse } from './components/terms-of-use/terms-of-use';
 import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
 import { ContactUs } from './components/contact-us/contact-us';
 import { Support } from './components/support/support';
-import { Cart } from './components/components/cart/cart';
+import { Cart } from './components/cart/cart';
 import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layout';
-import { ProductLayout } from './layouts/product-layout/product-layout';
+import { Productdetails } from './components/productdetails/productdetails';
+import { authguardGuard } from './guards/authguard-guard';
+import { CheckoutSuccess } from './pages/checkout-success/checkout-success';
+import { Profile } from './components/profile/profile';
+import { ProfilePage } from './pages/profile-page/profile-page';
 
 export const routes: Routes = [
   {
@@ -38,11 +42,17 @@ export const routes: Routes = [
       },
       {
         path: 'shop/:id',
-        component: ProductLayout,
+        component: Productdetails,
       },
       {
         path: 'cart',
+        canActivate: [authguardGuard],
         component: Cart,
+      },
+      {
+        path: 'profile',
+        canActivate: [authguardGuard],
+        component: ProfilePage,
       },
     ],
   },
@@ -80,6 +90,10 @@ export const routes: Routes = [
   {
     path: 'support',
     component: Support,
+  },
+  {
+    path: 'checkout/success',
+    component: CheckoutSuccess,
   },
   {
     path: '**',

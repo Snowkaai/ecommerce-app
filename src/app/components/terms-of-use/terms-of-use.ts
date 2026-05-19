@@ -5,6 +5,5 @@ import { RouterLink } from '@angular/router';
   selector: 'app-terms-of-use',
   imports: [RouterLink],
   templateUrl: './terms-of-use.html',
-  styleUrl: './terms-of-use.css',
 })
 export class TermsOfUse {}

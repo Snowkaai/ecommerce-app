@@ -1,42 +1,4 @@
-<div class="d-flex vh-100">
-  <!-- Sidebar Wrapper -->
-  <div class="flex-shrink-0 d-none d-md-block shadow-sm">
-    <app-sidebar></app-sidebar>
-  </div>
-
-
-
-  <!-- Main Content Wrapper -->
-  <div class="flex-grow-1 overflow-auto bg-light">
-    <!-- Search Bar + Dropdown -->
-    <div class="container py-3">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="d-flex gap-2">
-
-            <div class="search-container flex-grow-1 position-relative">
-              <input type="text" class="form-control search-input" placeholder="Search..." (input)="Search($event)">
-              <i class="fas fa-search search-icon"></i>
-            </div>
-
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Category
-              </button>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" (click)="change('fragrances')">Fragrances</a></li>
-                <li><a class="dropdown-item" (click)="change('beauty')">Beauty</a></li>
-                <li><a class="dropdown-item" (click)="change('furniture')">Furniture</a></li>
-                <li><a class="dropdown-item" (click)="change('groceries')">Groceries</a></li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <app-product-list></app-product-list>
-  </div>
+<div class="flex flex-1">
+  <app-sidebar></app-sidebar>
+  <app-shop-main-content class="flex-1 min-w-0"></app-shop-main-content>
 </div>

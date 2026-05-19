@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
+import { appuser } from '../Models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -7,32 +8,34 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 export class Authservice {
   http = inject(HttpClient);
   url = 'http://localhost:3000/users';
-  currentUser = signal<any | null>(null);
+  currentUser = signal<appuser | null>(null);
 
   isLoggedIn = computed(() => !!this.currentUser());
+
+  constructor() {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      this.currentUser.set(JSON.parse(user));
+    }
+  }
 
   signup(user: any) {
     return this.http.post(this.url, user);
   }
-getUserByEmail(email: string) {
-  return this.http.get<any[]>(
-    `${this.url}?email=${email}`
-  );}
-  login(email: string, password: string) {
-    return this.http.get<any[]>(
-      `${this.url}?email=${email}&password=${password}`
-    );
+  getUserByEmail(email: string) {
+    return this.http.get<any[]>(`${this.url}?email=${email}`);
   }
-    setUser(user: any) {
-
+  login(email: string, password: string) {
+    return this.http.get<any[]>(`${this.url}?email=${email}&password=${password}`);
+  }
+  setUser(user: appuser) {
     localStorage.setItem('user', JSON.stringify(user));
-
+    localStorage.setItem('token', 'fake-token');
     this.currentUser.set(user);
   }
 
- 
   logout() {
-
     localStorage.removeItem('user');
     localStorage.removeItem('token');
 

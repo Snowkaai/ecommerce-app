@@ -6,6 +6,5 @@ import { Notfound } from '../../pages/notfound/notfound';
   selector: 'app-not-found-layout',
   imports: [Header, Notfound],
   templateUrl: './not-found-layout.html',
-  styleUrl: './not-found-layout.css',
 })
 export class NotFoundLayout {}

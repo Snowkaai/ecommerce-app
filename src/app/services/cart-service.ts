@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { CartItem, Product } from '../Models/IProduct';
+import { CartItem } from '../Models/ICartItem';
+import { Product } from '../Models/IProduct';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class CartService {
     for (let item of this.cartItems()) {
       total += item.quantity;
     }
-    return total;
+    return Math.round(total * 100) / 100;
   });
 
   subtotal = computed(() => {
@@ -27,13 +28,13 @@ export class CartService {
         sum += item.product.price * item.quantity;
       }
     }
-    return sum;
+    return Math.round(sum * 100) / 100;
   });
 
   shipping: number = 10;
 
   total = computed(() => {
-    return this.subtotal() + this.shipping;
+    return Math.round((this.subtotal() + this.shipping) * 100) / 100;
   });
 
   loadCart(userId: string, products: Product[]) {
@@ -119,6 +120,7 @@ export class CartService {
         id: item.id,
         productId: item.productId,
         quantity: item.quantity,
+        product: item.product,
       };
     });
 

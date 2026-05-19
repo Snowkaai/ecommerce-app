@@ -9,7 +9,7 @@
         Create Account
       </h3>
       <p class="mt-1" style="color: var(--color-text-muted); font-size: var(--text-sm)">
-        Join Task Manager and organize your tasks
+        Join ShopVerse Now
       </p>
     </div>
 
@@ -37,6 +37,24 @@
 
         @if (signupForm.controls.email.dirty && signupForm.controls.email.invalid) {
           <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">Enter a valid email</p>
+        }
+      </div>
+      <!-- phone -->
+      <div class="mb-3">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Phone
+        </label>
+        <input
+          type="text"
+          class="mt-1"
+          formControlName="phone"
+          placeholder="Enter your phone number"
+        />
+
+        @if (signupForm.controls.phone.dirty && signupForm.controls.phone.invalid) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
+            Enter a valid phone number
+          </p>
         }
       </div>
 

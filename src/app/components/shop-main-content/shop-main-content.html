@@ -1,0 +1,29 @@
+<div class="flex-1 overflow-auto" style="background-color: var(--color-surface-muted)">
+  <!-- Search Bar + Category Dropdown -->
+  <div class="flex justify-center px-6 py-4">
+    <div class="flex gap-3 w-full" style="max-width: 640px">
+      <input type="text" placeholder="Search products..." class="flex-1" (input)="Search($event)" />
+
+      <!-- Custom dropdown -->
+      <div class="relative">
+        <select
+          (change)="change($any($event.target).value)"
+          class="btn-secondary"
+          style="appearance: none; padding-right: 2rem; cursor: pointer"
+        >
+          <option value="" selected>All Categories</option>
+          <option value="fragrances">Fragrances</option>
+          <option value="beauty">Beauty</option>
+          <option value="furniture">Furniture</option>
+          <option value="groceries">Groceries</option>
+          <option value="kitchen-accessories">Kitchen Accessories</option>
+          <option value="home-decoration">Home Decoration</option>
+          <!--home-decoration-->
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <app-product-list></app-product-list>
+</div>

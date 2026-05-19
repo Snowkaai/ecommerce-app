@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../../../services/cart-service';
+import { CartService } from '../../services/cart-service';
 import { CommonModule } from '@angular/common';
-import { StripeService } from '../../../services/stripe';
+import { StripeService } from '../../services/stripe';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import { StripeService } from '../../../services/stripe';
 })
 export class Cart implements OnInit {
   cartService = inject(CartService);
+  notify = inject(NotificationService);
   router = inject(Router);
   stripeService = inject(StripeService);
 
@@ -34,19 +36,26 @@ export class Cart implements OnInit {
     if (this.userId) {
       this.cartService.removeFromCart(this.userId, itemId);
     }
+    this.notify.info('Removed item from cart', 2000);
   }
 
-  checkout() {
-    const cartForStripe = this.cartService.cartItems().map((item) => ({
-      name: item.product?.title,
-      price: item.product?.price,
-      quantity: item.quantity,
-      image: item.product?.images?.[0],
-    }));
-    this.stripeService.checkout(cartForStripe);
-  }
+checkout() {
+  const cartForStripe = this.cartService.cartItems().map((item) => ({
+    name: item.product?.title,
+    price: item.product?.price,
+    quantity: item.quantity,
+    image: item.product?.images?.[0],
+  }));
+
+
+  this.stripeService.checkout(cartForStripe);
+}
+
+
 
   backToShop() {
     this.router.navigate(['/main/shop']);
   }
+
+  
 }
