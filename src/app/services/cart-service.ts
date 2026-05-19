@@ -13,117 +13,105 @@ export class CartService {
 
   cartItems = signal<CartItem[]>([]);
 
-  itemCount = computed(() => {
+  getItemCount():number{
     let total = 0;
     for (let item of this.cartItems()) {
       total += item.quantity;
     }
-    return Math.round(total * 100) / 100;
-  });
+    return total;
+  } 
 
-  subtotal = computed(() => {
+  getSubtotal(): number {
     let sum = 0;
     for (let item of this.cartItems()) {
       if (item.product && item.product.price) {
         sum += item.product.price * item.quantity;
       }
     }
-    return Math.round(sum * 100) / 100;
-  });
+   return Math.round(sum * 100) / 100;
+  }
 
   shipping: number = 10;
 
-  total = computed(() => {
-    return Math.round((this.subtotal() + this.shipping) * 100) / 100;
+  getTotal(): number {
+    return Math.round((this.getSubtotal() + this.shipping) * 100) / 100;
+  }
+
+loadCart(userId: string, products: Product[]) {
+  this.http.get<any>(`${this.baseUrl}/${userId}`).subscribe((user) => {
+
+    let loadedCart: CartItem[] = [];
+    for (let item of user.cart || []) {
+      let product = products.find((p) => p.id == item.productId);
+      loadedCart.push({...item,product: product});
+    }
+    this.cartItems.set(loadedCart);
+  });
+}
+addToCart(userId: string, product: Product) {
+  let found = false;
+  let updatedCart = this.cartItems().map((item) => {
+    if (item.productId == String(product.id)) {
+      found = true;
+      return {...item,quantity: item.quantity + 1};
+    }
+    return item;
+  });
+  if (!found) {
+    let newItem: CartItem = {
+      id: uuidv4(),
+      productId: String(product.id),
+      quantity: 1,
+      product: product
+    };
+    updatedCart.push(newItem);
+  }
+
+  this.cartItems.set(updatedCart);
+  this.saveCart(userId);
+}
+
+updateQuantity(userId: string, itemId: string, newQuantity: number) {
+  if (newQuantity < 1) {
+    this.removeFromCart(userId, itemId);
+    return;
+  }
+  let updatedCart = this.cartItems().map((item) => {
+    if (item.id == itemId) {
+      item.quantity = newQuantity;
+    }
+    return item;
   });
 
-  loadCart(userId: string, products: Product[]) {
-    this.http.get<any>(`${this.baseUrl}/${userId}`).subscribe({
-      next: (user) => {
-        const cartWithProducts: CartItem[] = [];
+  this.cartItems.set(updatedCart);
+  this.saveCart(userId);
+}
 
-        for (let item of user.cart || []) {
-          const matchedProduct = products.find((p) => {
-            return String(p.id) == String(item.productId);
-          });
+removeFromCart(userId: string, itemId: string) {
+  let updatedCart = this.cartItems().filter((item) => {
+    return item.id != itemId;
+  });
+  this.cartItems.set(updatedCart);
+  this.saveCart(userId);
+}
 
-          cartWithProducts.push({
-            ...item,
-            product: matchedProduct,
-          });
-        }
+clearCart(userId: string) {
+  this.cartItems.set([]);
+  this.saveCart(userId);
+}
 
-        this.cartItems.set(cartWithProducts);
-      },
-    });
-  }
+saveCart(userId: string) {
+  let cart = this.cartItems().map((item) => {
+    return {
+      id: item.id,
+      productId: item.productId,
+      quantity: item.quantity,
+      product: item.product
+    };
+  });
 
-  addToCart(userId: string, product: Product) {
-    const existingItem = this.cartItems().find((item) => {
-      return String(item.productId) == String(product.id);
-    });
-
-    if (existingItem) {
-      const updatedItems = this.cartItems().map((item) => {
-        if (String(item.productId) == String(product.id)) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
-      this.cartItems.set(updatedItems);
-    } else {
-      const newCartItem: CartItem = {
-        id: uuidv4(),
-        productId: String(product.id),
-        quantity: 1,
-        product: product,
-      };
-
-      const updatedItems = [...this.cartItems(), newCartItem];
-      this.cartItems.set(updatedItems);
-    }
-
-    this.saveCart(userId);
-  }
-
-  updateQuantity(userId: string, itemId: string, newQuantity: number) {
-    if (newQuantity < 1) {
-      this.removeFromCart(userId, itemId);
-      return;
-    }
-
-    const updatedItems = this.cartItems().map((item) => {
-      if (item.id === itemId) {
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    });
-
-    this.cartItems.set(updatedItems);
-    this.saveCart(userId);
-  }
-
-  removeFromCart(userId: string, itemId: string) {
-    const filteredItems = this.cartItems().filter((item) => item.id !== itemId);
-    this.cartItems.set(filteredItems);
-    this.saveCart(userId);
-  }
-
-  clearCart(userId: string) {
-    this.cartItems.set([]);
-    this.saveCart(userId);
-  }
-
-  saveCart(userId: string) {
-    const cartToSave = this.cartItems().map((item) => {
-      return {
-        id: item.id,
-        productId: item.productId,
-        quantity: item.quantity,
-        product: item.product,
-      };
-    });
-
-    this.http.patch(`${this.baseUrl}/${userId}`, { cart: cartToSave }).subscribe();
-  }
+  this.http.patch(`${this.baseUrl}/${userId}`, {
+    cart: cart
+  }).subscribe();
+}
 }

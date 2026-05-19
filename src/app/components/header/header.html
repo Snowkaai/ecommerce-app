@@ -47,11 +47,11 @@
         </svg>
 
         <!-- Dynamic Cart Badge -->
-        @if (cartService.itemCount() > 0) {
+        @if (cartService.getItemCount() > 0) {
           <span
             class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand text-[10px] font-semibold text-white"
           >
-            {{ cartService.itemCount() }}
+            {{ cartService.getItemCount() }}
           </span>
         }
       </a>

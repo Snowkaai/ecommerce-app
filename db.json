@@ -190,6 +190,136 @@
       "wishlist": [],
       "cart": [],
       "orders": []
+    },
+    {
+      "id": "DxqBicUupSY",
+      "name": "Aliaa Osama",
+      "email": "aliaaosama@gmail.com",
+      "password": "Aliaa122#",
+      "wishlist": [],
+      "orders": [
+        {
+          "id": "4b0a6984-ab86-49c5-b61a-b62a269ec3e2",
+          "items": [
+            {
+              "id": "6d7d1b1d-926b-4639-9a7f-232cbc59e5aa",
+              "productId": "1",
+              "quantity": 1,
+              "product": {
+                "id": "1",
+                "title": "Essence Mascara Lash Princess",
+                "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+                "price": 9.99,
+                "category": "beauty",
+                "images": [
+                  "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
+                ],
+                "reviews": [
+                  {
+                    "rating": 3,
+                    "comment": "Would not recommend!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Eleanor Collins"
+                  },
+                  {
+                    "rating": 4,
+                    "comment": "Very satisfied!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Lucas Gordon"
+                  },
+                  {
+                    "rating": 5,
+                    "comment": "Highly impressed!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Eleanor Collins"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "4f344cfa-7328-4c6d-952c-0510e59eac17",
+              "productId": "2",
+              "quantity": 1,
+              "product": {
+                "id": "2",
+                "title": "Eyeshadow Palette with Mirror",
+                "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+                "price": 19.99,
+                "category": "beauty",
+                "images": [
+                  "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp"
+                ],
+                "reviews": [
+                  {
+                    "rating": 5,
+                    "comment": "Great product!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Savannah Gomez"
+                  },
+                  {
+                    "rating": 4,
+                    "comment": "Awesome product!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Christian Perez"
+                  },
+                  {
+                    "rating": 1,
+                    "comment": "Poor quality!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Nicholas Bailey"
+                  }
+                ]
+              }
+            }
+          ],
+          "total": 29.979999999999997,
+          "orderDate": "2026-05-19T17:18:38.958Z"
+        },
+        {
+          "id": "3b780375-4f35-42a0-be1c-3f47d798c373",
+          "items": [
+            {
+              "id": "d8928c25-b1d9-413b-ba8b-b7bb892bbeec",
+              "productId": "2",
+              "quantity": 3,
+              "product": {
+                "id": "2",
+                "title": "Eyeshadow Palette with Mirror",
+                "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+                "price": 19.99,
+                "category": "beauty",
+                "images": [
+                  "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp"
+                ],
+                "reviews": [
+                  {
+                    "rating": 5,
+                    "comment": "Great product!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Savannah Gomez"
+                  },
+                  {
+                    "rating": 4,
+                    "comment": "Awesome product!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Christian Perez"
+                  },
+                  {
+                    "rating": 1,
+                    "comment": "Poor quality!",
+                    "date": "2025-04-30T09:41:02.053Z",
+                    "reviewerName": "Nicholas Bailey"
+                  }
+                ]
+              }
+            }
+          ],
+          "total": 59.97,
+          "orderDate": "2026-05-19T17:38:07.066Z"
+        }
+      ],
+      "phone": "01019364605",
+      "cart": []
     }
   ],
   "products": [

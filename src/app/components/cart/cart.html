@@ -186,7 +186,7 @@
         >
           <span>Subtotal</span>
           <span style="font-weight: 500; color: var(--color-text-base)"
-            >${{ cartService.subtotal() }}</span
+            >${{ cartService.getSubtotal() }}</span
           >
         </div>
 
@@ -220,7 +220,7 @@
           "
         >
           <span>Total</span>
-          <span>${{ cartService.total() }}</span>
+          <span>${{ cartService.getTotal() }}</span>
         </div>
 
         <button class="btn-primary" style="width: 100%; margin-top: 14px" (click)="checkout()">
