@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   gap: 1.5rem;
-  padding: 4rem 1.5rem;
+  padding: 0rem 1.5rem;
   background-color: var(--color-surface-muted);
   min-height: 75vh;
   max-width: 960px;
@@ -177,42 +177,7 @@
   margin: 0;
 }
 
-/* ── Orders Card ─────────────────────────────────────── */
-.orders-card {
-  flex: 1;
-  background-color: var(--color-surface-elevated);
-  border: 1px solid var(--color-surface-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
 
-.orders-header {
-  padding: 1.75rem 2rem;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-surface-border);
-}
-
-.orders-header h2 {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: 600;
-  margin: 0;
-  color: var(--color-text-base);
-}
-
-.orders-header p {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin: 0.25rem 0 0;
-}
-
-.orders-body {
-  padding: 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 700px) {

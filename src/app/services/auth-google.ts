@@ -41,6 +41,7 @@ export class AuthGoogle {
             phone: firebaseUser.phoneNumber!,
             wishlist: [],
             cart: [],
+            orders: [],
             provider: 'google',
           };
 
