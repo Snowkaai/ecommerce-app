@@ -1,59 +1,126 @@
-# EcommerceApp
+# Ecommerce App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+A modern Angular-based e-commerce application with product browsing, cart management, authentication support, and Stripe payment integration.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Product listing, search, and category browsing
+- Shopping cart with add/remove functionality
+- User authentication and protected routes
+- Firebase authentication support
+- Stripe payment integration
+- Responsive UI built with Bootstrap and custom styles
+- Mock backend data using `json-server`
+- Express backend server in `backend/server.js`
 
-```bash
-ng serve
+## Tech Stack
+
+- Angular 21.2.x
+- Bootstrap 5.3.x
+- Firebase
+- Stripe
+- JSON Server
+- Express.js
+- TypeScript
+- Tailwind CSS (development styling support)
+
+## Folder structure
+
+```
+ecommerce-app/
+├── src/
+│   ├── app/
+│   │   ├── components/       # UI components
+│   │   ├── guards/           # Route guards
+│   │   ├── layouts/          # Layout components
+│   │   ├── pages/            # Page-level components
+│   │   ├── services/         # Business logic services
+│   │   ├── Models/           # Interfaces and types
+│   │   ├── app.ts
+│   │   ├── app.routes.ts
+│   │   ├── app.config.ts
+│   │   ├── app.html
+│   │   └── app.css
+│   ├── environments/
+│   │   └── environment.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
+├── backend/                  # Node/Express backend
+│   ├── package.json
+│   └── server.js
+├── db.json                   # Mock database for JSON Server
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── tsconfig.app.json
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Node.js 18+ / npm 11+
+- Angular CLI installed globally (optional):
 
 ```bash
-ng generate --help
+npm install -g @angular/cli
 ```
 
-## Building
+### Install dependencies
 
-To build the project run:
+From the project root:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Run the Angular app
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Open `http://localhost:4200/` in your browser.
 
-For end-to-end (e2e) testing, run:
+### Run the mock backend
+
+The project includes `db.json` for JSON Server.
 
 ```bash
-ng e2e
+npx json-server --watch db.json
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+If you want to run the Express backend, start it from the `backend` folder:
 
-## Additional Resources
+```bash
+cd backend
+node server.js
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Available npm scripts
+
+- `npm start` - Serve the Angular application locally
+- `npm run build` - Build the Angular app for production
+- `npm run watch` - Build the project in watch mode for development
+- `npm test` - Run unit tests
+
+## Configuration
+
+- `src/environments/environment.ts` contains frontend environment settings.
+- `backend/server.js` contains backend server logic and Stripe integration.
+- `db.json` contains mock data used by JSON Server.
+
+## Notes
+
+- The app is generated with Angular CLI and uses standalone component architecture.
+- Use `ng generate` commands if you want to add new Angular components or services.
+- Update Firebase and Stripe keys in the environment files before deploying or testing payments.
+
+## Resources
+
+- Angular: https://angular.io/
+- Bootstrap: https://getbootstrap.com/
+- Firebase: https://firebase.google.com/
+- Stripe: https://stripe.com/
+- JSON Server: https://github.com/typicode/json-server
