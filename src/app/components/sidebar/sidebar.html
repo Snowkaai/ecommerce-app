@@ -1,106 +1,23 @@
-<nav
-  class="flex flex-col shrink-0 min-h-screen sticky top-0"
-  style="
-    width: 260px;
-    background-color: var(--color-surface);
-    border-right: 1px solid var(--color-surface-border);
-  "
->
-  <!-- Nav Links -->
-  <ul class="flex flex-col gap-1" style="padding: 16px 12px; list-style: none; margin: 0; flex: 1">
+<nav class="sidebar">
+  <ul class="sidebar-list">
     <li>
-      <a
-        (click)="AllItems()"
-        style="
-          display: flex;
-          align-items: center;
-          padding: 10px 12px;
-          border-radius: var(--radius-md);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--color-text-muted);
-          text-decoration: none;
-          transition: all 150ms;
-        "
-      >
-        All Items
-      </a>
+      <a class="sidebar-link" (click)="AllItems()"> All Items </a>
     </li>
+
     <li>
-      <a
-        (click)="getShopVerseChoices()"
-        style="
-          display: flex;
-          align-items: center;
-          padding: 10px 12px;
-          border-radius: var(--radius-md);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--color-text-muted);
-          text-decoration: none;
-          transition: all 150ms;
-        "
-      >
-        <span style="color: #ffd700">★ ★ ★</span>&nbsp;Editors' Choice&nbsp;<span
-          style="color: #ffd700"
-          >★ ★ ★</span
-        >
+      <a class="sidebar-link" (click)="getShopVerseChoices()">
+        <span class="gold-star">★</span>
+        &nbsp;ShopVerse's Choice&nbsp;
+        <span class="gold-star">★</span>
       </a>
     </li>
 
     <li>
-      <a
-        href="#"
-        style="
-          display: flex;
-          align-items: center;
-          padding: 10px 12px;
-          border-radius: var(--radius-md);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--color-text-muted);
-          text-decoration: none;
-          transition: all 150ms;
-        "
-      >
-        Orders
-      </a>
+      <a class="sidebar-link" routerLink="/main/profile"> Orders </a>
     </li>
+
     <li>
-      <a
-        (click)="getWishlist()"
-        style="
-          display: flex;
-          align-items: center;
-          padding: 10px 12px;
-          border-radius: var(--radius-md);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--color-text-muted);
-          text-decoration: none;
-          transition: all 150ms;
-        "
-        >
-        Wishlist
-      </a>
-    </li>
-    <li>
-      <a
-        href="#"
-        style="
-          display: flex;
-          align-items: center;
-          padding: 10px 12px;
-          border-radius: var(--radius-md);
-          font-size: var(--text-sm);
-          font-weight: 500;
-          color: var(--color-text-muted);
-          text-decoration: none;
-          transition: all 150ms;
-        "
-      >
-        Customers
-      </a>
+      <a class="sidebar-link" (click)="getWishlist()"> Wishlist </a>
     </li>
   </ul>
 </nav>
