@@ -1,0 +1,63 @@
+<div class="min-h-screen p-6 max-w-5xl mx-auto">
+  @if (currentUser()) {
+    <div class="grid grid-cols-2 gap-6 items-start">
+      <!-- Profile Card -->
+      <div class="card p-6">
+        <!-- Header -->
+        <div class="flex flex-col items-center gap-2 mb-6">
+          <div
+            class="w-16 h-16 rounded-full bg-brand text-white flex items-center justify-center text-2xl font-semibold"
+          >
+            {{ currentUser()?.name?.charAt(0)?.toUpperCase() || 'U' }}
+          </div>
+          <h2>User Profile</h2>
+          <p class="text-text-muted text-sm">Personal Details</p>
+        </div>
+
+        <!-- Details -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-4 p-3 rounded-md bg-surface-muted">
+            <i class="bi bi-person-fill text-brand text-lg"></i>
+            <div class="flex flex-col">
+              <span class="text-xs text-text-muted font-medium">Full Name</span>
+              <span class="text-sm text-text-base">{{ currentUser()?.name }}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-3 rounded-md bg-surface-muted">
+            <i class="bi bi-envelope-fill text-brand text-lg"></i>
+            <div class="flex flex-col">
+              <span class="text-xs text-text-muted font-medium">Email Address</span>
+              <span class="text-sm text-text-base">{{ currentUser()?.email }}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-3 rounded-md bg-surface-muted">
+            <i class="bi bi-telephone-fill text-brand text-lg"></i>
+            <div class="flex flex-col">
+              <span class="text-xs text-text-muted font-medium">Phone Number</span>
+              <span class="text-sm text-text-base">{{
+                currentUser()?.phone || 'Not Provided'
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Card -->
+      <div class="card p-6">
+        <h2 class="mb-4">Order History</h2>
+        <div>
+          <!-- orders will go here -->
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Locked State -->
+    <div class="card p-10 flex flex-col items-center gap-3 text-center max-w-sm mx-auto">
+      <i class="bi bi-lock-fill text-brand text-3xl"></i>
+      <h3>Access Restricted</h3>
+      <p class="text-text-muted text-sm">Please sign in to view your profile details.</p>
+    </div>
+  }
+</div>

@@ -14,7 +14,7 @@ import { LandingPageLayout } from './pages/landing-page-layout/landing-page-layo
 import { Productdetails } from './components/productdetails/productdetails';
 import { authguardGuard } from './guards/authguard-guard';
 import { CheckoutSuccess } from './pages/checkout-success/checkout-success';
-import { Profile } from './components/components/profile/profile';
+import { Profile } from './components/profile/profile';
 
 export const routes: Routes = [
   {
