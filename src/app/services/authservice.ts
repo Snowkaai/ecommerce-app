@@ -19,16 +19,29 @@ export class Authservice {
       this.currentUser.set(JSON.parse(user));
     }
   }
+  //-----------------------------------------------------------------
 
-  signup(user: any) {
-    return this.http.post(this.url, user);
+  signup(user: appuser) {
+    var obj = {
+      id: user.id,
+      userName: user.name,
+      email: user.email,
+      phone: user.phone,
+      password: user.password,
+    };
+    // return this.http.post(this.url, user);
+    console.log(obj);
+    return this.http.post(this.url, obj);
   }
-  getUserByEmail(email: string) {
-    return this.http.get<any[]>(`${this.url}?email=${email}`);
-  }
+
+  //-----------------------------------------------------------------
+  // getUserByEmail(email: string) {
+  //   return this.http.get<any[]>(`${this.url}?email=${email}`);
+  // }
   login(email: string, password: string) {
     return this.http.get<any[]>(`${this.url}?email=${email}&password=${password}`);
   }
+
   setUser(user: appuser) {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', 'fake-token');

@@ -27,40 +27,28 @@ export class AuthGoogle {
 
     const email = firebaseUser.email ?? '';
 
+    const newUser: appuser = {
+      id: firebaseUser.uid,
+      name: firebaseUser.displayName ?? 'Google User',
+      email: firebaseUser.email!,
+      photo: firebaseUser.photoURL!,
+      phone: firebaseUser.phoneNumber!,
+      wishlist: [],
+      cart: [],
+      orders: [],
+      provider: 'google',
+    };
+
+    console.log('Inside AuthGoogleService');
+    console.log(user);
+
     authService
-      .getUserByEmail(email)
+      .signup(newUser)
 
-      .subscribe((users) => {
-        // new user
-        if (users.length === 0) {
-          const newUser: appuser = {
-            id: firebaseUser.uid,
-            name: firebaseUser.displayName ?? 'Google User',
-            email: firebaseUser.email!,
-            photo: firebaseUser.photoURL!,
-            phone: firebaseUser.phoneNumber!,
-            wishlist: [],
-            cart: [],
-            orders: [],
-            provider: 'google',
-          };
+      .subscribe(() => {
+        authService.setUser(newUser);
 
-          authService
-            .signup(newUser)
-
-            .subscribe(() => {
-              authService.setUser(newUser);
-
-              localStorage.setItem('token', token);
-            });
-        }
-
-        // existing user
-        else {
-          authService.setUser(users[0]);
-
-          localStorage.setItem('token', token);
-        }
+        localStorage.setItem('token', token);
       });
   }
   // Logout

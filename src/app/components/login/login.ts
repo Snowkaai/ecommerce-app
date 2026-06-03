@@ -22,26 +22,28 @@ export class Login {
     password: '',
   };
 
-  onLogin(form: any) {
-    if (form.invalid) return;
-    this.authService.getUserByEmail(this.user.email).subscribe((res) => {
-      if (res.length === 0) {
-        this.notify.error('Invalid Email/Password');
-        return;
-      }
-      const user: appuser = res[0];
+  // onLogin(form: any) {
+  //   if (form.invalid) return;
+  //   this.authService.getUserByEmail(this.user.email).subscribe((res) => {
+  //     if (res.length === 0) {
+  //       this.notify.error('Invalid Email/Password');
+  //       return;
+  //     }
+  //     const user: appuser = res[0];
 
-      if (user.password !== this.user.password) {
-        this.notify.error('Invalid Email/Password');
-        return;
-      }
+  //     if (user.password !== this.user.password) {
+  //       this.notify.error('Invalid Email/Password');
+  //       return;
+  //     }
 
-      this.authService.setUser(user);
+  //     this.authService.setUser(user);
 
-      this.router.navigate(['/']);
-      this.notify.success('Logged In Successfully', 3000);
-    });
-  }
+  //     this.router.navigate(['/']);
+  //     this.notify.success('Logged In Successfully', 3000);
+  //   });
+  // }
+
+  onLogin(form: any) {}
 
   async login() {
     try {

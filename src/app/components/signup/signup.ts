@@ -71,18 +71,11 @@ export class Signup {
       // provider
     };
 
-    this.authService.getUserByEmail(email).subscribe((res) => {
-      if (res.length > 0) {
-        //alert("Email already exists");
-        // this.notification.show('Email already exists', 'warning');
-        return;
-      }
-      this.authService.signup(user).subscribe(() => {
-        //alert("User created successfully");
-        // this.notification.show('User created successfully', 'success');
-        this.notify.success('Signed Up Successfully', 3000);
-        this.router.navigate(['/auth/login']);
-      });
+    this.authService.signup(user).subscribe(() => {
+      //alert("User created successfully");
+      // this.notification.show('User created successfully', 'success');
+      this.notify.success('Signed Up Successfully', 3000);
+      this.router.navigate(['/auth/login']);
     });
 
     // API call here
