@@ -39,7 +39,7 @@ export class Authservice {
   //   return this.http.get<any[]>(`${this.url}?email=${email}`);
   // }
   login(_email: string, _password: string) {
-    return this.http.post<any[]>(`https://localhost:7186/api/User`, {
+    return this.http.post<any>(`https://localhost:7186/api/User/login`, {
       email: _email,
       password: _password,
     });

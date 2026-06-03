@@ -46,18 +46,21 @@ export class Login {
   onLogin(form: any) {
     if (form.invalid) return;
     this.authService.login(this.user.email, this.user.password).subscribe((res) => {
+      console.log(res);
       var obj: appuser = {
-        id: res[0].id,
-        name: res[0].userName,
-        email: res[0].email,
-        phone: res[0].phone,
+        id: res.id,
+        name: res.userName,
+        email: res.email,
+        phone: res.phone,
         password: this.user.password,
-        cart: res[0].cartItems,
-        orders: res[0].orders,
-        wishlist: res[0].wishlists,
+        cart: res.cartItems,
+        orders: res.orders,
+        wishlist: res.wishlists,
       };
 
       this.authService.setUser(obj);
+      this.router.navigate(['/']);
+      this.notify.success('Logged In Successfully', 3000);
     });
   }
 
