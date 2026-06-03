@@ -38,8 +38,11 @@ export class Authservice {
   // getUserByEmail(email: string) {
   //   return this.http.get<any[]>(`${this.url}?email=${email}`);
   // }
-  login(email: string, password: string) {
-    return this.http.get<any[]>(`${this.url}?email=${email}&password=${password}`);
+  login(_email: string, _password: string) {
+    return this.http.post<any[]>(`https://localhost:7186/api/User`, {
+      email: _email,
+      password: _password,
+    });
   }
 
   setUser(user: appuser) {

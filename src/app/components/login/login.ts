@@ -43,7 +43,23 @@ export class Login {
   //   });
   // }
 
-  onLogin(form: any) {}
+  onLogin(form: any) {
+    if (form.invalid) return;
+    this.authService.login(this.user.email, this.user.password).subscribe((res) => {
+      var obj: appuser = {
+        id: res[0].id,
+        name: res[0].userName,
+        email: res[0].email,
+        phone: res[0].phone,
+        password: this.user.password,
+        cart: res[0].cartItems,
+        orders: res[0].orders,
+        wishlist: res[0].wishlists,
+      };
+
+      this.authService.setUser(obj);
+    });
+  }
 
   async login() {
     try {
