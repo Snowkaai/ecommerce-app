@@ -7,7 +7,7 @@ import { appuser } from '../Models/User';
 })
 export class Authservice {
   http = inject(HttpClient);
-  url = 'http://localhost:3000/users';
+  url = 'https://localhost:7186/api/User';
   currentUser = signal<appuser | null>(null);
 
   isLoggedIn = computed(() => !!this.currentUser());

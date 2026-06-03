@@ -25,7 +25,7 @@ export class ProductService {
   });
 
   GetAllProducts() {
-    return this.http.get<any[]>(baseURL + '/products').pipe(
+    return this.http.get<any[]>("https://localhost:7186" + '/api/Product').pipe(
       map((data) =>
         data.map((prod) => ({
           id: prod.id,
@@ -33,7 +33,7 @@ export class ProductService {
           description: prod.description,
           price: prod.price,
           category: prod.category,
-          images: prod.images,
+          images: prod.image,
           reviews: prod.reviews.map((r: Review) => ({
             rating: r.rating,
             comment: r.comment,
@@ -73,14 +73,14 @@ export class ProductService {
   }
 
   GetProductById(id: number) {
-    return this.http.get<any>(baseURL + `/products/${id}`).pipe(
+    return this.http.get<any>("https://localhost:7186" + `/api/Product/${id}`).pipe(
       map((data) => ({
         id: data.id,
         title: data.title,
         description: data.description,
         price: data.price,
         category: data.category,
-        images: data.images,
+        images: data.image,
         reviews: data.reviews.map((r: Review) => ({
           rating: r.rating,
           comment: r.comment,
@@ -92,7 +92,7 @@ export class ProductService {
   }
 
   GetProductByCategory(category: string | null) {
-    return this.http.get<any[]>(baseURL + `/products?category=${category}`).pipe(
+    return this.http.get<any[]>("https://localhost:7186" + `/api/Product/${category}`).pipe(
       map((data) =>
         data.map((prod) => ({
           id: prod.id,

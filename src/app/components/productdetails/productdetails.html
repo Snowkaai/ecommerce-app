@@ -6,14 +6,12 @@
       <!-- Product Images -->
       <div class="card p-6 mb-6">
         <div class="flex flex-wrap gap-4 justify-center">
-          @for (img of product()!.images; track $index) {
             <img
-              [src]="img"
+              [src]="product()!.images"
               alt="Product image"
               class="rounded-lg object-cover"
               style="width: 340px; height: 340px; border: 1px solid var(--color-surface-border)"
             />
-          }
         </div>
       </div>
 
