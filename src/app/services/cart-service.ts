@@ -38,24 +38,21 @@ export class CartService {
   });
 
   loadCart(userId: string, products: Product[]) {
-    this.http.get<any>(`${this.baseUrl}/${userId}`).subscribe({
-      next: (user) => {
-        const cartWithProducts: CartItem[] = [];
-
-        for (let item of user.cart || []) {
-          const matchedProduct = products.find((p) => {
-            return String(p.id) == String(item.productId);
-          });
-
-          cartWithProducts.push({
-            ...item,
-            product: matchedProduct,
-          });
-        }
-
-        this.cartItems.set(cartWithProducts);
-      },
-    });
+    // this.http.get<any>(`${this.baseUrl}/${userId}`).subscribe({
+    //   next: (user) => {
+    //     const cartWithProducts: CartItem[] = [];
+    //     for (let item of user.cart || []) {
+    //       const matchedProduct = products.find((p) => {
+    //         return String(p.id) == String(item.productId);
+    //       });
+    //       cartWithProducts.push({
+    //         ...item,
+    //         product: matchedProduct,
+    //       });
+    //     }
+    //     this.cartItems.set(cartWithProducts);
+    //   },
+    // });
   }
 
   addToCart(userId: string, product: Product) {

@@ -14,24 +14,24 @@ import { Authservice } from '../../services/authservice';
   templateUrl: './productdetails.html',
 })
 export class Productdetails {
+  wishlistService = inject(WishlistService);
+  user = inject(Authservice);
 
-wishlistService=inject(WishlistService);
-user=inject(Authservice)
-
-addToWishlist(productId: number) {
-  const currentUser = this.user.currentUser();
-  if (!currentUser) return;
+  addToWishlist(productId: number) {
+    const currentUser = this.user.currentUser();
+    if (!currentUser) return;
     if (this.isInWishlist(productId)) {
-    this.wishlistService.RemoveFromWishlist(Number(productId), currentUser);
-  } else {
-    this.wishlistService.AddToWishlist(Number(productId), currentUser);
+      this.wishlistService.RemoveFromWishlist(Number(productId), currentUser);
+    } else {
+      this.wishlistService.AddToWishlist(Number(productId), currentUser);
+    }
   }
-}
 
-isInWishlist(productId: number) {
-  return this.user.currentUser()?.wishlist.includes(Number(productId));
-}
-
+  isInWishlist(productId: number) {
+    console.log(this.user.currentUser());
+    // return true;
+    return this.user.currentUser()?.wishlist.includes(Number(productId));
+  }
 
   notify = inject(NotificationService);
   productService = inject(ProductService);
