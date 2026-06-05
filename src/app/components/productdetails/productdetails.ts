@@ -29,6 +29,7 @@ addToWishlist(productId: number) {
 }
 
 isInWishlist(productId: number) {
+  console.log(this.user.currentUser());
   return this.user.currentUser()?.wishlist.includes(Number(productId));
 }
 

@@ -55,7 +55,7 @@ export class Login {
         password: this.user.password,
         cart: res.cartItems,
         orders: res.orders,
-        wishlist: res.wishlists,
+        wishlist: res.wishlist,
       };
 
       this.authService.setUser(obj);

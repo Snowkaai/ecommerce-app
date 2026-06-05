@@ -38,7 +38,7 @@ export class CartService {
   });
 
   loadCart(userId: string, products: Product[]) {
-    this.http.get<any>(`${this.baseUrl}/${userId}`).subscribe({
+    this.http.get<any>(`https://localhost:7186/api/User/cart?userId=${userId}`).subscribe({
       next: (user) => {
         const cartWithProducts: CartItem[] = [];
 
@@ -120,10 +120,9 @@ export class CartService {
         id: item.id,
         productId: item.productId,
         quantity: item.quantity,
-        product: item.product,
       };
     });
 
-    this.http.patch(`${this.baseUrl}/${userId}`, { cart: cartToSave }).subscribe();
+    this.http.post(`https://localhost:7186/api/User/Cart?UID=${userId}`, { cartItems: cartToSave }).subscribe();
   }
 }

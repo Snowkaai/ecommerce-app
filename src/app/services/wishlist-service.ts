@@ -40,8 +40,9 @@ AddToWishlist(productId: number, currentUser: appuser) {
   productId=Number(productId);
   const updatedWishlist = [...currentUser.wishlist, productId];
 
-  this.http.patch<appuser>(`${baseURL}/users/${currentUser.id}`, { wishlist: updatedWishlist }).subscribe({
+  this.http.post<appuser>(`https://localhost:7186/api/User/Wishlist?UID=${currentUser.id}&PID=${productId}`, {}).subscribe({
     next: (user) => {
+      user.password=currentUser.password;
       const updatedUser = { ...currentUser, wishlist: updatedWishlist };
       this.user.currentUser.set(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser)); 
@@ -54,8 +55,9 @@ AddToWishlist(productId: number, currentUser: appuser) {
 RemoveFromWishlist(productId: number, currentUser: appuser) {
   const updatedWishlist = currentUser.wishlist.filter((id) => id !== productId);
 
-  this.http.patch<appuser>(baseURL + `/users/${currentUser.id}`, { wishlist: updatedWishlist }).subscribe({
+  this.http.post<appuser>(`https://localhost:7186/api/User/Wishlist?UID=${currentUser.id}&PID=${productId}`, {}).subscribe({
       next: (user) => {
+      user.password=currentUser.password;
       const updatedUser = { ...currentUser, wishlist: updatedWishlist };
       this.user.currentUser.set(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser)); 
