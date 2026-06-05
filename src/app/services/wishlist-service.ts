@@ -11,66 +11,57 @@ import { appuser } from '../Models/User';
   providedIn: 'root',
 })
 export class WishlistService {
-  http = inject(HttpClient);
-  user = inject(Authservice);
-  productService = inject(ProductService);
-  WishlistItems = signal<number[] | null>([]);
+http = inject(HttpClient);
+user = inject(Authservice);
+productService= inject(ProductService);
+WishlistItems=signal<number[]|null>([]);
 
-  GetWishlist(currentUser: appuser) {
-    const products: Product[] = [];
 
-    this.WishlistItems.set(currentUser.wishlist);
+GetWishlist(currentUser: appuser) {
+  const products: Product[] = [];
 
-    for (let item of currentUser.wishlist) {
-      this.productService.GetProductById(item).subscribe({
-        next: (prod) => {
-          products.push(prod);
-          if (products.length === currentUser.wishlist.length) {
-            this.productService.products.set(products);
-          }
-          console.log(this.productService.filteredProducts());
-        },
-        error: (err) => console.error(err),
-      });
-    }
+  this.WishlistItems.set(currentUser.wishlist);
+
+  for (let item of currentUser.wishlist) {
+    this.productService.GetProductById(item).subscribe({
+      next: (prod) => {
+        products.push(prod);
+        if (products.length === currentUser.wishlist.length) {
+          this.productService.products.set(products);
+        }
+        console.log(this.productService.filteredProducts());
+      },
+      error: (err) => console.error(err),
+    });
   }
+}
 
-  AddToWishlist(productId: number, currentUser: appuser) {
-    this.http
-      .post<any>(
-        `https://localhost:7186/api/User/Wishlist?PID=${productId}&UID=${currentUser.id}`,
-        {},
-      )
-      .subscribe({
-        next: (user) => {
-          const productIds = user.wishlists.map((item: any) => item.productId);
-          const updatedUser = { ...currentUser, wishlist: productIds };
-          console.log(updatedUser);
-          this.user.currentUser.set(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-          // console.log(user.wishlist);
-        },
-        error: (err) => console.error(err),
-      });
-  }
+AddToWishlist(productId: number, currentUser: appuser) {
+  productId=Number(productId);
+  const updatedWishlist = [...currentUser.wishlist, productId];
 
-  RemoveFromWishlist(productId: number, currentUser: appuser) {
-    // const updatedWishlist = currentUser.wishlist.filter((id) => id !== productId);
-    // this.http
-    //   .patch<appuser>(baseURL + `/users/${currentUser.id}`, { wishlist: updatedWishlist })
-    this.http
-      .post<any>(
-        `https://localhost:7186/api/User/RemoveWishlist?PID=${productId}&UID=${currentUser.id}`,
-        {},
-      )
-      .subscribe({
-        next: (user) => {
-          const updatedUser = { ...currentUser, wishlist: user.wishlists };
-          this.user.currentUser.set(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-          // console.log(user.wishlist);
-        },
-        error: (err) => console.error(err),
-      });
-  }
+  this.http.patch<appuser>(`${baseURL}/users/${currentUser.id}`, { wishlist: updatedWishlist }).subscribe({
+    next: (user) => {
+      const updatedUser = { ...currentUser, wishlist: updatedWishlist };
+      this.user.currentUser.set(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser)); 
+      console.log(user.wishlist);
+    },
+    error: (err) => console.error(err),
+  });
+}
+
+RemoveFromWishlist(productId: number, currentUser: appuser) {
+  const updatedWishlist = currentUser.wishlist.filter((id) => id !== productId);
+
+  this.http.patch<appuser>(baseURL + `/users/${currentUser.id}`, { wishlist: updatedWishlist }).subscribe({
+      next: (user) => {
+      const updatedUser = { ...currentUser, wishlist: updatedWishlist };
+      this.user.currentUser.set(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser)); 
+      console.log(user.wishlist);
+    },
+    error: (err) => console.error(err),
+  });
+}
 }
